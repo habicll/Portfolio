@@ -1,0 +1,16 @@
+<header *ngIf="showNav" class="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a routerLink="/" class="text-white text-2xl md:text-3xl font-semibold tracking-wide">Portfolio</a>
+
+        <nav class="flex items-center gap-6">
+            <a routerLink="/" class="text-white/90 hover:text-white transition">Home</a>
+            <a routerLink="/about" class="text-white/90 hover:text-white transition">About</a>
+            <a routerLink="/projects" class="text-white/90 hover:text-white transition">Projects</a>
+            <a routerLink="/contact" class="text-white/90 hover:text-white transition">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pt-20">
+    <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,40 @@
+<div class="projects-container">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-subtitle">
+        A selection of academic, professional, and personal projects I've contributed to.
+    </p>
+
+    <div class="projects-grid">
+        <div class="project-card" *ngFor="let project of projects" (click)="openProject(project)">
+            <img [src]="project.image" alt="{{ project.title }}" class="project-image" />
+            <div class="project-content">
+                <h2>{{ project.title }}</h2>
+                <p class="project-date">{{ project.date }}</p>
+                <p class="project-summary">{{ project.summary }}</p>
+                <div class="project-tags">
+                    <span *ngFor="let skill of project.skills">{{ skill }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="project-modal" *ngIf="selectedProject" (click)="closeProject()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <button class="close-btn" (click)="closeProject()">×</button>
+            <img [src]="selectedProject.image" alt="{{ selectedProject.title }}" class="modal-image" />
+            <h2>{{ selectedProject.title }}</h2>
+            <p class="modal-date">{{ selectedProject.date }}</p>
+            <p class="modal-desc">{{ selectedProject.description }}</p>
+
+            <div class="modal-skills">
+                <strong>Skills:</strong>
+                <span *ngFor="let skill of selectedProject.skills">{{ skill }}</span>
+            </div>
+
+            <a *ngIf="selectedProject.github" [href]="selectedProject.github" target="_blank" class="modal-link">
+                View on GitHub ↗
+            </a>
+        </div>
+    </div>
+</div>

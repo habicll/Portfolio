@@ -1,0 +1,46 @@
+<div class="contact-container">
+    <h1 class="page-title glow">Get in Touch</h1>
+    <p class="page-subtitle">
+        I’m always open to discussing new opportunities, collaborations, or ideas.
+    </p>
+
+    <div class="contact-card">
+        <form class="contact-form" (ngSubmit)="sendMessage()" #contactForm="ngForm" autocomplete="off">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" [(ngModel)]="formData.name" required placeholder="Your name" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" [(ngModel)]="formData.email" required
+                    placeholder="your@email.com" />
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" [(ngModel)]="formData.message" required
+                    placeholder="Write your message..."></textarea>
+            </div>
+
+            <button type="submit" [disabled]="!contactForm.form.valid || isSending">
+                <span *ngIf="!isSending && !isSent">Send Message</span>
+                <span *ngIf="isSending">Sending...</span>
+                <span *ngIf="isSent">✅ Sent!</span>
+            </button>
+        </form>
+
+        <div class="contact-links">
+            <a href="mailto:habi.cailleau@epitech.eu" target="_blank">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://github.com/habicll" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/habi-cailleau-3b72b5293/?locale=en_US" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </div>
+</div>
