@@ -6,8 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "predeploy": "ng build --configuration production --base-href \"/Portfolio/\"",
+    "deploy": "gh-pages -d dist/portfolio -b gh-pages"
   },
+  "homepage": "https://habicll.github.io/Portfolio",
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
@@ -46,6 +49,7 @@
     "@types/jasmine": "~5.1.0",
     "angular-cli-ghpages": "^2.0.3",
     "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.3.0",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
