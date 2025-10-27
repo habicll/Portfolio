@@ -23,7 +23,7 @@ export class ProjectsComponent {
       product documentation, and guaranteed accessibility and clarity for a technical audience.`,
       skills: ['Data Management', 'API', 'Technical Writing', 'Technical Leadership', 'Bubble.io', 'Markdown'],
       link: 'https://github.com/algosup/2024-2025-project-5-bubble-intermarche-team-6',
-      image: '/Inter.jpeg'
+      image: 'Inter.jpeg'
 
     },
     {
@@ -35,7 +35,7 @@ export class ProjectsComponent {
       “trust score” to each piece of content to restore confidence in information.`,
       skills: ['AI', 'Python', 'Blockchain', 'Postman API', 'Problem Solving', 'System Design'],
       link: 'https://github.com/CrippleFN',
-      image: '/Cripple.jpeg',
+      image: 'Cripple.jpeg',
 
     },
     {
@@ -48,7 +48,7 @@ export class ProjectsComponent {
       installation guide for our interactive teaching tool.`,
       skills: ['Technical Writing', 'Waterfall Method', 'Customer Satisfaction', 'Documentation'],
       link: 'https://github.com/algosup/2024-2025-project-4-web-fpga-team-5',
-      image: '/Cnes.jpeg',
+      image: 'Cnes.jpeg',
 
     },
     {
@@ -59,7 +59,7 @@ export class ProjectsComponent {
       for SFIL. Built with a responsive UI and Python backend, it merged public and internal datasets to create customized client profiles.`,
       skills: ['Python', 'AWS', 'HTML', 'CSS', 'Generative AI', 'Data Management'],
       link: 'https://github.com/GenAI_hackaton',
-      image: '/fichotron.JPG',
+      image: 'fichotron.JPG',
 
     },
     {
@@ -71,7 +71,7 @@ export class ProjectsComponent {
       As Project Manager, I led the team, planned milestones, assigned tasks, and delivered documentation — resulting in a 100% project grade.`,
       skills: ['C++', 'Project Management', 'Agile/Waterfall', 'GitHub', 'Team Leadership'],
       link: 'https://github.com/algosup/2024-2025-project-3-quickest-path-team-5',
-      image: '/Quickestpath.png',
+      image: 'Quickestpath.png',
 
     },
     {
@@ -83,7 +83,7 @@ export class ProjectsComponent {
       We designed synchronous circuits, VGA rendering, and sprite management using Block RAM.`,
       skills: ['Verilog', 'FPGA', 'Software Development', 'Problem Solving'],
       link: 'https://github.com/algosup/2024-2025-project-1-fpga-team-2',
-      image: '/frogger.jpeg',
+      image: 'frogger.jpeg',
 
     },
     {
@@ -94,7 +94,7 @@ export class ProjectsComponent {
       via embedded NFC chips — enabling minting and blockchain transactions directly from the toy.`,
       skills: ['Blockchain', 'NFC', 'Smart Contracts', 'Hackathon Development'],
       link: 'https://github.com/hackaton-blockchain-vierzon-2024',
-      image: '/mooguis.png',
+      image: 'mooguis.png',
 
     },
     {
@@ -107,7 +107,7 @@ export class ProjectsComponent {
       specification document with UI mockups.`,
       skills: ['Program Management', 'UX/UI', 'Canva', 'Functional Specs'],
       link: 'https://github.com/algosup/2023-2024-project-5-flutter-team-3',
-      image: '/evolution.png',
+      image: 'evolution.png',
 
     },
     {
@@ -119,7 +119,7 @@ export class ProjectsComponent {
       featuring low-power sensors and a connected mobile interface. As QA, I wrote and executed test specifications.`,
       skills: ['Quality Assurance', 'Test Planning', 'GitHub', 'Markdown'],
       link: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
-      image: '/coris.png',
+      image: 'coris.png',
 
     },
     {
@@ -141,7 +141,7 @@ export class ProjectsComponent {
         'Unit Testing',
       ],
       github: '',
-      image: '/java.png',
+      image: 'java.png',
     },
     {
       title: 'Grape',
@@ -162,7 +162,7 @@ export class ProjectsComponent {
       ],
       github:
         'https://github.com/EpitechMscProPromo2028/T-WEB-500-digitalResume-NAN_habi-cailleau',
-      image: '/grape.jpg',
+      image: 'grape.jpg',
     },
     {
       title: 'LinkUp ~ Epitech',
@@ -172,7 +172,7 @@ export class ProjectsComponent {
       job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
       skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
       link: 'https://github.com/EpitechMscProPromo2028/T-WEB-501-NAN_2',
-      image: '/linkup.jpeg',
+      image: 'linkup.jpeg',
 
     }
   ];
