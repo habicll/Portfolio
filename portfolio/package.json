@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "predeploy": "ng build --configuration production --base-href \"/Portfolio/\"",
-    "deploy": "gh-pages -d dist/portfolio -b gh-pages"
+  "predeploy": "ng build --configuration production --base-href \"/Portfolio/\"",
+  "deploy": "gh-pages -d dist/portfolio/browser -b gh-pages"
   },
   "homepage": "https://habicll.github.io/Portfolio",
   "prettier": {
