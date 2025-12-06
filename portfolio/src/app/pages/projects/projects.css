@@ -121,19 +121,38 @@
         height: 180px;
     }
 
+    .project-modal {
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
     .modal-content {
-        padding: 1rem;
+        padding: 0.75rem;
         width: 95%;
-        max-width: 680px;
+        max-width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
     }
 
     .modal-image {
-        height: 180px;
+        height: 140px;
+        margin-bottom: 1rem;
+    }
+
+    .close-btn {
+        top: 5rem;
+        right: 0.5rem;
+        font-size: 1.5rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .modal-desc {
+        font-size: 0.9rem;
     }
 }
 
 .close-btn {
-    position: absolute;
+    position: fixed;
     top: 1rem;
     right: 1rem;
     font-size: 2rem;
@@ -141,6 +160,7 @@
     border: none;
     color: #fff;
     cursor: pointer;
+    z-index: 100;
 }
 
 .modal-desc {

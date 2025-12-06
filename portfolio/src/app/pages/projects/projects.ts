@@ -13,6 +13,82 @@ export class ProjectsComponent {
 
   projects = [
     {
+      title: 'POLL-DOCKER ~ Epitech',
+      period: 'Dec 2025 - Dec 2025',
+      summary: 'A fully distributed microservices architecture featuring a Flask voting interface, Redis broker, Java asynchronous consumer, and a Node.js/Socket.IO real-time results API, all orchestrated with Docker Compose.',
+      description: `A fully distributed microservices architecture: a Flask interface for voting, a Redis broker, a Java consumer for asynchronous processing, and a Node.js/Socket.IO API for real-time results. Orchestration is 
+      handled via Docker Compose with five services, isolated networks, persistent volumes, and environment variable management, along with multi-stage images and pinned versions for reproducibility.`,
+      skills: ['Docker', 'Docker-Compose', 'DevOps', 'PostgreSQL', 'Dockerfile'],
+      github: 'https://github.com/habicll/POLL-DOCKER',
+      image: 'docker.png',
+
+    },
+    {
+      title: 'JAVAZ_GAME ~ Epitech',
+      period: 'Nov 2025 - Nov 2025',
+      summary: 'A real-time strategy tower-defense game built in Java with libGDX, where players control a hero to defend their base from waves of zombies.',
+      description: `A tower-defense and real-time strategy game developed in Java using the libGDX framework. The player controls a hero who must defend their base against waves of zombies 
+      while managing resources (gold), purchasing allied units, and attacking the enemy base. The technologies used include Java 8+ with libGDX (a cross-platform game framework), Gradle for dependency management, 
+      LWJGL3 for the desktop backend, and a modular architecture (core + lwjgl3).`,
+      skills: ['OOP', 'Java', 'LibGDX', 'UX', 'Unit Testing'],
+      github: 'https://github.com/habicll/JAVA_ZGame',
+      image: 'Javaz_game.png',
+
+    },
+    {
+      title: 'LinkUp ~ Epitech',
+      period: 'Oct 2025 - Oct 2025',
+      summary: 'Web matchmaking platform built with Django REST and Vue 3 for company-candidate connections.',
+      description: `I built a Django REST backend (Token Auth, dj-rest-auth) with a Vue 3 + Vite frontend to enable 
+      job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
+      skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
+      github: 'https://github.com/habicll/LinkUp',
+      image: 'linkup.jpeg',
+
+    },
+    {
+      title: 'Grape',
+      date: 'Sep 2025',
+      summary:
+        'Single-page web app built with Angular showcasing digital portfolio and content navigation.',
+      description:
+        'Grape is a fast, modular SPA built with Angular and TypeScript that acts as a digital resume. I designed and developed the front-end architecture, routing system, and responsive interface while managing JSON-based content and optimizing performance for smaller bundle sizes.',
+      skills: [
+        'Angular',
+        'TypeScript',
+        'HTML',
+        'CSS',
+        'Responsive Design',
+        'JSON',
+        'Git',
+        'SPA',
+      ],
+      github:
+        'https://github.com/habicll/Grapes',
+      image: 'grape.jpg',
+    },
+    {
+      title: 'Employee API ~ OWN',
+      date: 'Aug 2025',
+      summary:
+        'Built a RESTful Employee Management API with CRUD operations using Spring Boot and JPA.',
+      description:
+        'Developed a RESTful API for employee management featuring CRUD endpoints (POST/GET/PUT/DELETE) implemented via Spring Boot. Integrated persistence with H2 and JPA, and used Lombok to simplify boilerplate code. The project focused on clean backend architecture and reproducible Maven configuration.',
+      skills: [
+        'Spring Boot',
+        'Spring Data JPA',
+        'REST',
+        'H2',
+        'Java 21',
+        'Lombok',
+        'CRUD',
+        'SQL',
+        'Unit Testing',
+      ],
+      github: '',
+      image: 'java.png',
+    },
+    {
       title: 'Accords Fromages et Vins ~ Intermarché',
       period: 'Apr 2025 - Jun 2025',
       association: 'Algosup',
@@ -75,6 +151,17 @@ export class ProjectsComponent {
 
     },
     {
+      title: 'Hackathon Blockchain ~ Avalanche',
+      period: 'Oct 2024',
+      summary: 'First-place project: tokenizing NFC-equipped toys linked to NFTs on Avalanche blockchain.',
+      description: `During an Avalanche hackathon, our team built a system linking physical toys with NFTs 
+      via embedded NFC chips — enabling minting and blockchain transactions directly from the toy.`,
+      skills: ['Blockchain', 'NFC', 'Smart Contracts', 'Hackathon Development'],
+      github: 'https://github.com/0xBelnadris/hackaton-blockchain-vierzon-2024',
+      image: 'mooguis.png',
+
+    },
+    {
       title: 'Frogger FPGA',
       period: 'Sep 2024 - Oct 2024',
       association: 'Algosup',
@@ -84,17 +171,6 @@ export class ProjectsComponent {
       skills: ['Verilog', 'FPGA', 'Software Development', 'Problem Solving'],
       github: 'https://github.com/algosup/2024-2025-project-1-fpga-team-2',
       image: 'frogger.jpeg',
-
-    },
-    {
-      title: 'Hackathon Blockchain ~ Avalanche',
-      period: 'Oct 2024',
-      summary: 'First-place project: tokenizing NFC-equipped toys linked to NFTs on Avalanche blockchain.',
-      description: `During an Avalanche hackathon, our team built a system linking physical toys with NFTs 
-      via embedded NFC chips — enabling minting and blockchain transactions directly from the toy.`,
-      skills: ['Blockchain', 'NFC', 'Smart Contracts', 'Hackathon Development'],
-      github: 'https://github.com/0xBelnadris/hackaton-blockchain-vierzon-2024',
-      image: 'mooguis.png',
 
     },
     {
@@ -120,82 +196,6 @@ export class ProjectsComponent {
       skills: ['Quality Assurance', 'Test Planning', 'GitHub', 'Markdown'],
       github: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
       image: 'coris.png',
-
-    },
-    {
-      title: 'Employee API ~ OWN',
-      date: 'Aug 2025',
-      summary:
-        'Built a RESTful Employee Management API with CRUD operations using Spring Boot and JPA.',
-      description:
-        'Developed a RESTful API for employee management featuring CRUD endpoints (POST/GET/PUT/DELETE) implemented via Spring Boot. Integrated persistence with H2 and JPA, and used Lombok to simplify boilerplate code. The project focused on clean backend architecture and reproducible Maven configuration.',
-      skills: [
-        'Spring Boot',
-        'Spring Data JPA',
-        'REST',
-        'H2',
-        'Java 21',
-        'Lombok',
-        'CRUD',
-        'SQL',
-        'Unit Testing',
-      ],
-      github: '',
-      image: 'java.png',
-    },
-    {
-      title: 'Grape',
-      date: 'Sep 2025',
-      summary:
-        'Single-page web app built with Angular showcasing digital portfolio and content navigation.',
-      description:
-        'Grape is a fast, modular SPA built with Angular and TypeScript that acts as a digital resume. I designed and developed the front-end architecture, routing system, and responsive interface while managing JSON-based content and optimizing performance for smaller bundle sizes.',
-      skills: [
-        'Angular',
-        'TypeScript',
-        'HTML',
-        'CSS',
-        'Responsive Design',
-        'JSON',
-        'Git',
-        'SPA',
-      ],
-      github:
-        'https://github.com/habicll/Grapes',
-      image: 'grape.jpg',
-    },
-    {
-      title: 'LinkUp ~ Epitech',
-      period: 'Oct 2025 - Oct 2025',
-      summary: 'Web matchmaking platform built with Django REST and Vue 3 for company-candidate connections.',
-      description: `I built a Django REST backend (Token Auth, dj-rest-auth) with a Vue 3 + Vite frontend to enable 
-      job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
-      skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
-      github: 'https://github.com/habicll/LinkUp',
-      image: 'linkup.jpeg',
-
-    },
-    {
-      title: 'JAVAZ_GAME ~ Epitech',
-      period: 'Nov 2025 - Nov 2025',
-      summary: 'A real-time strategy tower-defense game built in Java with libGDX, where players control a hero to defend their base from waves of zombies.',
-      description: `A tower-defense and real-time strategy game developed in Java using the libGDX framework. The player controls a hero who must defend their base against waves of zombies 
-      while managing resources (gold), purchasing allied units, and attacking the enemy base. The technologies used include Java 8+ with libGDX (a cross-platform game framework), Gradle for dependency management, 
-      LWJGL3 for the desktop backend, and a modular architecture (core + lwjgl3).`,
-      skills: ['OOP', 'Java', 'LibGDX', 'UX', 'Unit Testing'],
-      github: 'https://github.com/habicll/JAVA_ZGame',
-      image: 'Javaz_game.png',
-
-    },
-    {
-      title: 'POLL-DOCKER ~ Epitech',
-      period: 'Dec 2025 - Dec 2025',
-      summary: 'A fully distributed microservices architecture featuring a Flask voting interface, Redis broker, Java asynchronous consumer, and a Node.js/Socket.IO real-time results API, all orchestrated with Docker Compose.',
-      description: `A fully distributed microservices architecture: a Flask interface for voting, a Redis broker, a Java consumer for asynchronous processing, and a Node.js/Socket.IO API for real-time results. Orchestration is 
-      handled via Docker Compose with five services, isolated networks, persistent volumes, and environment variable management, along with multi-stage images and pinned versions for reproducibility.`,
-      skills: ['Docker', 'Docker-Compose', 'DevOps', 'PostgreSQL', 'Dockerfile'],
-      github: 'https://github.com/habicll/POLL-DOCKER',
-      image: 'docker.png',
 
     }
   ];

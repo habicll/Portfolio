@@ -149,4 +149,8 @@
         left: -10%;
         bottom: 18%;
     }
+
+    header {
+        top: 0.2rem !important;
+    }
 }
