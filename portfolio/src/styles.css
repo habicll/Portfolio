@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Note: removed global html/body background — pages provide their own backgrounds.
+   Navbar keeps the blur effect and pages should set their own backgrounds so the
+   blur shows page content instead of a global color. */

@@ -2,12 +2,13 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { NavbarComponent } from './pages/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule],
+  imports: [CommonModule, RouterOutlet, RouterModule, NavbarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('portfolio');

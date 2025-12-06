@@ -1,0 +1,4 @@
+/* Hamburger animation styles */
+button span {
+  transition: all 0.3s ease;
+}

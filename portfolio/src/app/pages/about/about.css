@@ -70,7 +70,6 @@
 }
 
 .portfolio-section {
-    margin-top: 6rem;
     text-align: center;
 }
 
@@ -214,6 +213,7 @@
     .portfolio-container h2 {
         font-size: 1.6rem;
     }
+    
 }
 
 @media (max-width: 640px) {

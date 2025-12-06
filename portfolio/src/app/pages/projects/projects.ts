@@ -166,13 +166,36 @@ export class ProjectsComponent {
     },
     {
       title: 'LinkUp ~ Epitech',
-      period: 'Oct 2024 - Present',
+      period: 'Oct 2025 - Oct 2025',
       summary: 'Web matchmaking platform built with Django REST and Vue 3 for company-candidate connections.',
       description: `I built a Django REST backend (Token Auth, dj-rest-auth) with a Vue 3 + Vite frontend to enable 
       job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
       skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
       link: 'https://github.com/EpitechMscProPromo2028/T-WEB-501-NAN_2',
       image: 'linkup.jpeg',
+
+    },
+    {
+      title: 'JAVAZ_GAME ~ Epitech',
+      period: 'Nov 2025 - Nov 2025',
+      summary: 'A real-time strategy tower-defense game built in Java with libGDX, where players control a hero to defend their base from waves of zombies.',
+      description: `A tower-defense and real-time strategy game developed in Java using the libGDX framework. The player controls a hero who must defend their base against waves of zombies 
+      while managing resources (gold), purchasing allied units, and attacking the enemy base. The technologies used include Java 8+ with libGDX (a cross-platform game framework), Gradle for dependency management, 
+      LWJGL3 for the desktop backend, and a modular architecture (core + lwjgl3).`,
+      skills: ['OOP', 'Java', 'LibGDX', 'UX', 'Unit Testing'],
+      link: 'https://github.com/habicll/JAVA_ZGame',
+      image: 'Javaz_game.png',
+
+    },
+    {
+      title: 'POLL-DOCKER ~ Epitech',
+      period: 'Dec 2025 - Dec 2025',
+      summary: 'A fully distributed microservices architecture featuring a Flask voting interface, Redis broker, Java asynchronous consumer, and a Node.js/Socket.IO real-time results API, all orchestrated with Docker Compose.',
+      description: `A fully distributed microservices architecture: a Flask interface for voting, a Redis broker, a Java consumer for asynchronous processing, and a Node.js/Socket.IO API for real-time results. Orchestration is 
+      handled via Docker Compose with five services, isolated networks, persistent volumes, and environment variable management, along with multi-stage images and pinned versions for reproducibility.`,
+      skills: ['Docker', 'Docker-Compose', 'DevOps', 'PostgreSQL', 'Dockerfile'],
+      link: 'https://github.com/habicll/POLL-DOCKER',
+      image: 'docker.png',
 
     }
   ];
