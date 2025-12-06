@@ -18,11 +18,11 @@ export class ProjectsComponent {
       association: 'Algosup',
       summary: 'A web app to recommend wine and cheese pairings based on dishes, fully built on Bubble.io.',
       description: `Intermarché wanted to offer its customers a digital assistant for pairing cheeses and wines. 
-      Our mission was to design, prototype, and deploy a web application based on Intermarché’s product database. 
+      Our mission was to design, prototype, and deploy a web application based on Intermarché's product database. 
       As Tech Leader, I oversaw the technical direction, ensured architectural consistency, wrote and maintained the 
       product documentation, and guaranteed accessibility and clarity for a technical audience.`,
       skills: ['Data Management', 'API', 'Technical Writing', 'Technical Leadership', 'Bubble.io', 'Markdown'],
-      link: 'https://github.com/algosup/2024-2025-project-5-bubble-intermarche-team-6',
+      github: 'https://github.com/algosup/2024-2025-project-5-bubble-intermarche-team-6',
       image: 'Inter.jpeg'
 
     },
@@ -32,9 +32,9 @@ export class ProjectsComponent {
       summary: 'CrippleFN — a blockchain-powered platform for combating fake news using AI and community validation.',
       description: `We built CrippleFN, a platform promoting transparency and accuracy in information using AI, 
       citizen participation, and blockchain traceability. The goal was to assign a timestamped, tamper-proof 
-      “trust score” to each piece of content to restore confidence in information.`,
+      "trust score" to each piece of content to restore confidence in information.`,
       skills: ['AI', 'Python', 'Blockchain', 'Postman API', 'Problem Solving', 'System Design'],
-      link: 'https://github.com/CrippleFN',
+      github: 'https://github.com/Marwane666/CrippleFN/tree/blockchain',
       image: 'Cripple.jpeg',
 
     },
@@ -47,7 +47,7 @@ export class ProjectsComponent {
       It merges 2D floorplan visualization with temporal simulation data. As technical writer, I produced the user manual and 
       installation guide for our interactive teaching tool.`,
       skills: ['Technical Writing', 'Waterfall Method', 'Customer Satisfaction', 'Documentation'],
-      link: 'https://github.com/algosup/2024-2025-project-4-web-fpga-team-5',
+      github: 'https://github.com/algosup/2024-2025-project-4-web-fpga-team-5',
       image: 'Cnes.jpeg',
 
     },
@@ -58,7 +58,7 @@ export class ProjectsComponent {
       description: `We developed Fichotron – AI, a web application to automate data aggregation and document generation 
       for SFIL. Built with a responsive UI and Python backend, it merged public and internal datasets to create customized client profiles.`,
       skills: ['Python', 'AWS', 'HTML', 'CSS', 'Generative AI', 'Data Management'],
-      link: 'https://github.com/GenAI_hackaton',
+      github: 'https://github.com/GuillotSamuel/GenAI_hackaton',
       image: 'fichotron.JPG',
 
     },
@@ -70,7 +70,7 @@ export class ProjectsComponent {
       description: `We developed a C++ application to calculate the shortest path between U.S. locations using an API supporting XML and JSON. 
       As Project Manager, I led the team, planned milestones, assigned tasks, and delivered documentation — resulting in a 100% project grade.`,
       skills: ['C++', 'Project Management', 'Agile/Waterfall', 'GitHub', 'Team Leadership'],
-      link: 'https://github.com/algosup/2024-2025-project-3-quickest-path-team-5',
+      github: 'https://github.com/algosup/2024-2025-project-3-quickest-path-team-5',
       image: 'Quickestpath.png',
 
     },
@@ -82,7 +82,7 @@ export class ProjectsComponent {
       description: `As software developer, I recreated Frogger on a Go Board FPGA platform. 
       We designed synchronous circuits, VGA rendering, and sprite management using Block RAM.`,
       skills: ['Verilog', 'FPGA', 'Software Development', 'Problem Solving'],
-      link: 'https://github.com/algosup/2024-2025-project-1-fpga-team-2',
+      github: 'https://github.com/algosup/2024-2025-project-1-fpga-team-2',
       image: 'frogger.jpeg',
 
     },
@@ -93,7 +93,7 @@ export class ProjectsComponent {
       description: `During an Avalanche hackathon, our team built a system linking physical toys with NFTs 
       via embedded NFC chips — enabling minting and blockchain transactions directly from the toy.`,
       skills: ['Blockchain', 'NFC', 'Smart Contracts', 'Hackathon Development'],
-      link: 'https://github.com/hackaton-blockchain-vierzon-2024',
+      github: 'https://github.com/0xBelnadris/hackaton-blockchain-vierzon-2024',
       image: 'mooguis.png',
 
     },
@@ -106,7 +106,7 @@ export class ProjectsComponent {
       over appearance or degrees. As Program Manager, I defined design directions and created a functional 
       specification document with UI mockups.`,
       skills: ['Program Management', 'UX/UI', 'Canva', 'Functional Specs'],
-      link: 'https://github.com/algosup/2023-2024-project-5-flutter-team-3',
+      github: 'https://github.com/algosup/2023-2024-project-5-flutter-team-3',
       image: 'evolution.png',
 
     },
@@ -118,7 +118,7 @@ export class ProjectsComponent {
       description: `We created an embedded prototype to prevent theft or tampering of skis and snowboards, 
       featuring low-power sensors and a connected mobile interface. As QA, I wrote and executed test specifications.`,
       skills: ['Quality Assurance', 'Test Planning', 'GitHub', 'Markdown'],
-      link: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
+      github: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
       image: 'coris.png',
 
     },
@@ -161,7 +161,7 @@ export class ProjectsComponent {
         'SPA',
       ],
       github:
-        'https://github.com/EpitechMscProPromo2028/T-WEB-500-digitalResume-NAN_habi-cailleau',
+        'https://github.com/habicll/Grapes',
       image: 'grape.jpg',
     },
     {
@@ -171,7 +171,7 @@ export class ProjectsComponent {
       description: `I built a Django REST backend (Token Auth, dj-rest-auth) with a Vue 3 + Vite frontend to enable 
       job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
       skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
-      link: 'https://github.com/EpitechMscProPromo2028/T-WEB-501-NAN_2',
+      github: 'https://github.com/habicll/LinkUp',
       image: 'linkup.jpeg',
 
     },
@@ -183,7 +183,7 @@ export class ProjectsComponent {
       while managing resources (gold), purchasing allied units, and attacking the enemy base. The technologies used include Java 8+ with libGDX (a cross-platform game framework), Gradle for dependency management, 
       LWJGL3 for the desktop backend, and a modular architecture (core + lwjgl3).`,
       skills: ['OOP', 'Java', 'LibGDX', 'UX', 'Unit Testing'],
-      link: 'https://github.com/habicll/JAVA_ZGame',
+      github: 'https://github.com/habicll/JAVA_ZGame',
       image: 'Javaz_game.png',
 
     },
@@ -194,7 +194,7 @@ export class ProjectsComponent {
       description: `A fully distributed microservices architecture: a Flask interface for voting, a Redis broker, a Java consumer for asynchronous processing, and a Node.js/Socket.IO API for real-time results. Orchestration is 
       handled via Docker Compose with five services, isolated networks, persistent volumes, and environment variable management, along with multi-stage images and pinned versions for reproducibility.`,
       skills: ['Docker', 'Docker-Compose', 'DevOps', 'PostgreSQL', 'Dockerfile'],
-      link: 'https://github.com/habicll/POLL-DOCKER',
+      github: 'https://github.com/habicll/POLL-DOCKER',
       image: 'docker.png',
 
     }
