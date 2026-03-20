@@ -1,0 +1,17 @@
+# Render Blueprint — Auto-deploy Angular Portfolio as Static Site
+# Docs: https://docs.render.com/blueprint-spec
+
+services:
+  - type: web
+    name: habi-portfolio
+    runtime: static
+    buildCommand: cd portfolio && npm install && npx ng build --configuration production
+    staticPublishPath: portfolio/dist/portfolio/browser
+    branch: main
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
