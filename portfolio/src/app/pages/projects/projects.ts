@@ -13,6 +13,41 @@ export class ProjectsComponent {
 
   projects = [
     {
+      title: 'Real-time Chat application  ~ Epitech',
+      period: 'Feb 2025',
+      summary: 'A Discord-inspired real-time chat application built with Rust and Next.js/React, featuring servers, channels, role-based permissions.',
+      description: `The backend implements a high-performance async architecture using Rust with Axum, SQLx with 
+      compile-time query verification, JWT authentication with Argon2 hashing, and bidirectional WebSocket communication 
+      for real-time messaging. The frontend leverages Next.js 16 with React 19 Server Components, Tailwind CSS 4, custom authentication middleware, and automatic reconnection mechanisms.`,
+      skills: ['Backend Systems with Rust', 'Real-Time Communication', 'Full-Stack Web Architecture', 'Database Design & Query Optimization'],
+      github: 'https://github.com/augustinrouillard/Virtual-interview',
+      image: 'discord.png',
+
+    },
+    {
+      title: 'Virtual reality & AI hackathon  ~ BPCE IT',
+      period: 'Feb 2025',
+      summary: 'Virtual Interview is a visionOS training app that simulates a bank customer advisor interview in an immersive 3D environment. ',
+      description: `Virtual Interview is built with SwiftUI and RealityKit on visionOS, using an ImmersiveSpace flow
+      for entering and exiting the simulation experience. It combines real-time French transcription, AVAudioRecorder for session capture, and AVSpeechSynthesizer for spoken AI replies driven by a step-based interview state machine. 
+      After completion, the app aggregates technical and relational scoring into a structured report with strengths, improvement points, and optional audio replay.`,
+      skills: ['Speech Recognition & Real-Time NLP', 'Audio I/O Management', 'Immersive visionOS Architecture', 'MarStateful Dialogue Enginekdown'],
+      github: 'https://github.com/augustinrouillard/Virtual-interview',
+      image: 'vision.png',
+
+    },
+    {
+      title: 'Jenkins ~ Epitech',
+      period: 'Dec 2025',
+      summary: 'Prototype for securing sports gear using embedded electronics and mobile alerts.',
+      description: `We created an embedded prototype to prevent theft or tampering of skis and snowboards, 
+      featuring low-power sensors and a connected mobile interface. As QA, I wrote and executed test specifications.`,
+      skills: ['Quality Assurance', 'Test Planning', 'GitHub', 'Markdown'],
+      github: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
+      image: 'jenkins.jpg',
+
+    },
+    {
       title: 'POLL-DOCKER ~ Epitech',
       period: 'Dec 2025 - Dec 2025',
       summary: 'A fully distributed microservices architecture featuring a Flask voting interface, Redis broker, Java asynchronous consumer, and a Node.js/Socket.IO real-time results API, all orchestrated with Docker Compose.',
@@ -43,7 +78,7 @@ export class ProjectsComponent {
       job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
       skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
       github: 'https://github.com/habicll/LinkUp',
-      image: 'linkup.jpeg',
+      image: 'linkup.jpg',
 
     },
     {
@@ -86,7 +121,7 @@ export class ProjectsComponent {
         'Unit Testing',
       ],
       github: '',
-      image: 'java.png',
+      image: 'java.jpg',
     },
     {
       title: 'Accords Fromages et Vins ~ Intermarché',

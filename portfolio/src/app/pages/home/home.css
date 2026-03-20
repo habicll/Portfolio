@@ -150,7 +150,7 @@
         bottom: 18%;
     }
 
-    header {
-        top: 0.2rem !important;
+    .bg {
+        padding-top: 4rem;
     }
 }
