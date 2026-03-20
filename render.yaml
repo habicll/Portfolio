@@ -3,7 +3,7 @@
 
 services:
   - type: web
-    name: habi-portfolio
+    name: habi-cailleau
     runtime: static
     buildCommand: cd portfolio && npm install && npx ng build --configuration production
     staticPublishPath: portfolio/dist/portfolio/browser
