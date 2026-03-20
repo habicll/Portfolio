@@ -1,30 +1,39 @@
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a routerLink="/" class="text-white text-2xl md:text-3xl font-semibold tracking-wide">Portfolio</a>
+<header class="navbar" [class.navbar-scrolled]="isScrolled">
+  <div class="navbar-inner">
+    <!-- Brand -->
+    <a routerLink="/" class="navbar-brand" (click)="closeMenu()">
+      <span class="brand-text">Habi Cailleau</span>
+    </a>
 
-    <!-- Desktop Nav (hidden on mobile) -->
-    <nav class="hidden md:flex items-center gap-6 pointer-events-auto">
-      <a routerLink="/" class="text-white/90 hover:text-white transition">Home</a>
-      <a routerLink="/about" class="text-white/90 hover:text-white transition">About</a>
-      <a routerLink="/projects" class="text-white/90 hover:text-white transition">Projects</a>
-      <a routerLink="/contact" class="text-white/90 hover:text-white transition">Contact</a>
+    <!-- Desktop Nav -->
+    <nav class="navbar-links">
+      <a routerLink="/projects" routerLinkActive="active-link" class="nav-link">{{ i18n.t().nav.projects }}</a>
+      <a routerLink="/about" routerLinkActive="active-link" class="nav-link">{{ i18n.t().nav.skills }}</a>
+      <a routerLink="/contact" routerLinkActive="active-link" class="nav-link">{{ i18n.t().nav.contact }}</a>
     </nav>
 
-    <!-- Hamburger Menu Button (mobile only) -->
-    <button class="md:hidden flex flex-col gap-1.5 cursor-pointer" (click)="toggleMenu()" aria-label="Toggle menu">
-      <span class="block w-6 h-0.5 bg-white transition-all" [class.rotate-45]="isMenuOpen()" [class.translate-y-2]="isMenuOpen()"></span>
-      <span class="block w-6 h-0.5 bg-white transition-all" [class.opacity-0]="isMenuOpen()"></span>
-      <span class="block w-6 h-0.5 bg-white transition-all" [class.-rotate-45]="isMenuOpen()" [class.-translate-y-2]="isMenuOpen()"></span>
-    </button>
+    <!-- Language Toggle + Hamburger -->
+    <div class="navbar-actions">
+      <button class="lang-toggle" (click)="i18n.toggleLang()" [attr.aria-label]="'Switch to ' + (i18n.lang() === 'en' ? 'French' : 'English')">
+        <span class="lang-option" [class.lang-active]="i18n.lang() === 'en'">EN</span>
+        <span class="lang-divider">/</span>
+        <span class="lang-option" [class.lang-active]="i18n.lang() === 'fr'">FR</span>
+      </button>
+
+      <!-- Mobile Hamburger -->
+      <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle menu" [class.is-open]="isMenuOpen()">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
   </div>
 
-  <!-- Mobile Menu (shown when isMenuOpen is true) -->
-  <nav *ngIf="isMenuOpen()" class="md:hidden bg-black/40 backdrop-blur-md border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
-      <a routerLink="/" class="text-white/90 hover:text-white transition block" (click)="closeMenu()">Home</a>
-      <a routerLink="/about" class="text-white/90 hover:text-white transition block" (click)="closeMenu()">About</a>
-      <a routerLink="/projects" class="text-white/90 hover:text-white transition block" (click)="closeMenu()">Projects</a>
-      <a routerLink="/contact" class="text-white/90 hover:text-white transition block" (click)="closeMenu()">Contact</a>
-    </div>
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" *ngIf="isMenuOpen()">
+    <a routerLink="/" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.home }}</a>
+    <a routerLink="/projects" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.projects }}</a>
+    <a routerLink="/about" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.skills }}</a>
+    <a routerLink="/contact" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.contact }}</a>
   </nav>
 </header>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, HostListener, inject, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-projects',
@@ -8,238 +9,131 @@ import { CommonModule } from '@angular/common';
   templateUrl: './projects.html',
   styleUrls: ['./projects.css']
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements AfterViewInit, OnDestroy {
+  i18n = inject(TranslationService);
   selectedProject: any = null;
+  showAll = signal(false);
+  private observer: IntersectionObserver | null = null;
 
-  projects = [
-    {
-      title: 'Real-time Chat application  ~ Epitech',
-      period: 'Feb 2025',
-      summary: 'A Discord-inspired real-time chat application built with Rust and Next.js/React, featuring servers, channels, role-based permissions.',
-      description: `The backend implements a high-performance async architecture using Rust with Axum, SQLx with 
-      compile-time query verification, JWT authentication with Argon2 hashing, and bidirectional WebSocket communication 
-      for real-time messaging. The frontend leverages Next.js 16 with React 19 Server Components, Tailwind CSS 4, custom authentication middleware, and automatic reconnection mechanisms.`,
-      skills: ['Backend Systems with Rust', 'Real-Time Communication', 'Full-Stack Web Architecture', 'Database Design & Query Optimization'],
-      github: 'https://github.com/augustinrouillard/Virtual-interview',
-      image: 'discord.png',
-
-    },
-    {
-      title: 'Virtual reality & AI hackathon  ~ BPCE IT',
-      period: 'Feb 2025',
-      summary: 'Virtual Interview is a visionOS training app that simulates a bank customer advisor interview in an immersive 3D environment. ',
-      description: `Virtual Interview is built with SwiftUI and RealityKit on visionOS, using an ImmersiveSpace flow
-      for entering and exiting the simulation experience. It combines real-time French transcription, AVAudioRecorder for session capture, and AVSpeechSynthesizer for spoken AI replies driven by a step-based interview state machine. 
-      After completion, the app aggregates technical and relational scoring into a structured report with strengths, improvement points, and optional audio replay.`,
-      skills: ['Speech Recognition & Real-Time NLP', 'Audio I/O Management', 'Immersive visionOS Architecture', 'MarStateful Dialogue Enginekdown'],
-      github: 'https://github.com/augustinrouillard/Virtual-interview',
-      image: 'vision.png',
-
-    },
-    {
-      title: 'Jenkins ~ Epitech',
-      period: 'Dec 2025',
-      summary: 'Prototype for securing sports gear using embedded electronics and mobile alerts.',
-      description: `We created an embedded prototype to prevent theft or tampering of skis and snowboards, 
-      featuring low-power sensors and a connected mobile interface. As QA, I wrote and executed test specifications.`,
-      skills: ['Quality Assurance', 'Test Planning', 'GitHub', 'Markdown'],
-      github: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
-      image: 'jenkins.jpg',
-
-    },
-    {
-      title: 'POLL-DOCKER ~ Epitech',
-      period: 'Dec 2025 - Dec 2025',
-      summary: 'A fully distributed microservices architecture featuring a Flask voting interface, Redis broker, Java asynchronous consumer, and a Node.js/Socket.IO real-time results API, all orchestrated with Docker Compose.',
-      description: `A fully distributed microservices architecture: a Flask interface for voting, a Redis broker, a Java consumer for asynchronous processing, and a Node.js/Socket.IO API for real-time results. Orchestration is 
-      handled via Docker Compose with five services, isolated networks, persistent volumes, and environment variable management, along with multi-stage images and pinned versions for reproducibility.`,
-      skills: ['Docker', 'Docker-Compose', 'DevOps', 'PostgreSQL', 'Dockerfile'],
-      github: 'https://github.com/habicll/POLL-DOCKER',
-      image: 'docker.png',
-
-    },
-    {
-      title: 'JAVAZ_GAME ~ Epitech',
-      period: 'Nov 2025 - Nov 2025',
-      summary: 'A real-time strategy tower-defense game built in Java with libGDX, where players control a hero to defend their base from waves of zombies.',
-      description: `A tower-defense and real-time strategy game developed in Java using the libGDX framework. The player controls a hero who must defend their base against waves of zombies 
-      while managing resources (gold), purchasing allied units, and attacking the enemy base. The technologies used include Java 8+ with libGDX (a cross-platform game framework), Gradle for dependency management, 
-      LWJGL3 for the desktop backend, and a modular architecture (core + lwjgl3).`,
-      skills: ['OOP', 'Java', 'LibGDX', 'UX', 'Unit Testing'],
-      github: 'https://github.com/habicll/JAVA_ZGame',
-      image: 'Javaz_game.png',
-
-    },
-    {
-      title: 'LinkUp ~ Epitech',
-      period: 'Oct 2025 - Oct 2025',
-      summary: 'Web matchmaking platform built with Django REST and Vue 3 for company-candidate connections.',
-      description: `I built a Django REST backend (Token Auth, dj-rest-auth) with a Vue 3 + Vite frontend to enable 
-      job posting, applications, and admin management. Focused on API integration, migrations, and authentication flows.`,
-      skills: ['Django', 'Vue 3', 'Vite', 'Axios', 'REST API', 'MySQL'],
-      github: 'https://github.com/habicll/LinkUp',
-      image: 'linkup.jpg',
-
-    },
-    {
-      title: 'Grape',
-      date: 'Sep 2025',
-      summary:
-        'Single-page web app built with Angular showcasing digital portfolio and content navigation.',
-      description:
-        'Grape is a fast, modular SPA built with Angular and TypeScript that acts as a digital resume. I designed and developed the front-end architecture, routing system, and responsive interface while managing JSON-based content and optimizing performance for smaller bundle sizes.',
-      skills: [
-        'Angular',
-        'TypeScript',
-        'HTML',
-        'CSS',
-        'Responsive Design',
-        'JSON',
-        'Git',
-        'SPA',
-      ],
-      github:
-        'https://github.com/habicll/Grapes',
-      image: 'grape.jpg',
-    },
-    {
-      title: 'Employee API ~ OWN',
-      date: 'Aug 2025',
-      summary:
-        'Built a RESTful Employee Management API with CRUD operations using Spring Boot and JPA.',
-      description:
-        'Developed a RESTful API for employee management featuring CRUD endpoints (POST/GET/PUT/DELETE) implemented via Spring Boot. Integrated persistence with H2 and JPA, and used Lombok to simplify boilerplate code. The project focused on clean backend architecture and reproducible Maven configuration.',
-      skills: [
-        'Spring Boot',
-        'Spring Data JPA',
-        'REST',
-        'H2',
-        'Java 21',
-        'Lombok',
-        'CRUD',
-        'SQL',
-        'Unit Testing',
-      ],
-      github: '',
-      image: 'java.jpg',
-    },
-    {
-      title: 'Accords Fromages et Vins ~ Intermarché',
-      period: 'Apr 2025 - Jun 2025',
-      association: 'Algosup',
-      summary: 'A web app to recommend wine and cheese pairings based on dishes, fully built on Bubble.io.',
-      description: `Intermarché wanted to offer its customers a digital assistant for pairing cheeses and wines. 
-      Our mission was to design, prototype, and deploy a web application based on Intermarché's product database. 
-      As Tech Leader, I oversaw the technical direction, ensured architectural consistency, wrote and maintained the 
-      product documentation, and guaranteed accessibility and clarity for a technical audience.`,
-      skills: ['Data Management', 'API', 'Technical Writing', 'Technical Leadership', 'Bubble.io', 'Markdown'],
-      github: 'https://github.com/algosup/2024-2025-project-5-bubble-intermarche-team-6',
-      image: 'Inter.jpeg'
-
-    },
-    {
-      title: 'Hackathon Blockchain x AI ~ XRP Ledger',
-      period: 'May 2025',
-      summary: 'CrippleFN — a blockchain-powered platform for combating fake news using AI and community validation.',
-      description: `We built CrippleFN, a platform promoting transparency and accuracy in information using AI, 
-      citizen participation, and blockchain traceability. The goal was to assign a timestamped, tamper-proof 
-      "trust score" to each piece of content to restore confidence in information.`,
-      skills: ['AI', 'Python', 'Blockchain', 'Postman API', 'Problem Solving', 'System Design'],
-      github: 'https://github.com/Marwane666/CrippleFN/tree/blockchain',
-      image: 'Cripple.jpeg',
-
-    },
-    {
-      title: 'Web Interface for FPGA Simulator ~ CNES',
-      period: 'Feb 2025 - Mar 2025',
-      association: 'Algosup',
-      summary: 'Educational web prototype for visualizing signal propagation in FPGA architectures.',
-      description: `We designed and prototyped a web app to teach signal propagation inside FPGAs (NanoXplore NGultra, Xilinx 7). 
-      It merges 2D floorplan visualization with temporal simulation data. As technical writer, I produced the user manual and 
-      installation guide for our interactive teaching tool.`,
-      skills: ['Technical Writing', 'Waterfall Method', 'Customer Satisfaction', 'Documentation'],
-      github: 'https://github.com/algosup/2024-2025-project-4-web-fpga-team-5',
-      image: 'Cnes.jpeg',
-
-    },
-    {
-      title: 'Hackathon GenAI ~ SIA Partners',
-      period: 'Jan 2025 - Feb 2025',
-      summary: 'Fichotron – AI, an app to merge and enrich public and internal data for generating client profiles.',
-      description: `We developed Fichotron – AI, a web application to automate data aggregation and document generation 
-      for SFIL. Built with a responsive UI and Python backend, it merged public and internal datasets to create customized client profiles.`,
-      skills: ['Python', 'AWS', 'HTML', 'CSS', 'Generative AI', 'Data Management'],
-      github: 'https://github.com/GuillotSamuel/GenAI_hackaton',
-      image: 'fichotron.JPG',
-
-    },
-    {
-      title: 'Quickest Path',
-      period: 'Jan 2025 - Feb 2025',
-      association: 'Algosup',
-      summary: 'C++ app to compute the fastest route between two US points with API exposure and optimization goals.',
-      description: `We developed a C++ application to calculate the shortest path between U.S. locations using an API supporting XML and JSON. 
-      As Project Manager, I led the team, planned milestones, assigned tasks, and delivered documentation — resulting in a 100% project grade.`,
-      skills: ['C++', 'Project Management', 'Agile/Waterfall', 'GitHub', 'Team Leadership'],
-      github: 'https://github.com/algosup/2024-2025-project-3-quickest-path-team-5',
-      image: 'Quickestpath.png',
-
-    },
-    {
-      title: 'Hackathon Blockchain ~ Avalanche',
-      period: 'Oct 2024',
-      summary: 'First-place project: tokenizing NFC-equipped toys linked to NFTs on Avalanche blockchain.',
-      description: `During an Avalanche hackathon, our team built a system linking physical toys with NFTs 
-      via embedded NFC chips — enabling minting and blockchain transactions directly from the toy.`,
-      skills: ['Blockchain', 'NFC', 'Smart Contracts', 'Hackathon Development'],
-      github: 'https://github.com/0xBelnadris/hackaton-blockchain-vierzon-2024',
-      image: 'mooguis.png',
-
-    },
-    {
-      title: 'Frogger FPGA',
-      period: 'Sep 2024 - Oct 2024',
-      association: 'Algosup',
-      summary: 'Reimplementation of the classic Frogger game on FPGA using Verilog and VGA display logic.',
-      description: `As software developer, I recreated Frogger on a Go Board FPGA platform. 
-      We designed synchronous circuits, VGA rendering, and sprite management using Block RAM.`,
-      skills: ['Verilog', 'FPGA', 'Software Development', 'Problem Solving'],
-      github: 'https://github.com/algosup/2024-2025-project-1-fpga-team-2',
-      image: 'frogger.jpeg',
-
-    },
-    {
-      title: 'Adopte Un Candidat ~ We Are Evolution',
-      period: 'Apr 2024 - Jun 2024',
-      association: 'Algosup',
-      summary: 'A mobile and web recruitment app focusing on soft skills and personality-driven matching.',
-      description: `We designed and prototyped an inclusive recruitment solution prioritizing human qualities 
-      over appearance or degrees. As Program Manager, I defined design directions and created a functional 
-      specification document with UI mockups.`,
-      skills: ['Program Management', 'UX/UI', 'Canva', 'Functional Specs'],
-      github: 'https://github.com/algosup/2023-2024-project-5-flutter-team-3',
-      image: 'evolution.png',
-
-    },
-    {
-      title: 'SportShield ~ Corris Innovation',
-      period: 'Mar 2024 - Apr 2024',
-      association: 'Algosup',
-      summary: 'Prototype for securing sports gear using embedded electronics and mobile alerts.',
-      description: `We created an embedded prototype to prevent theft or tampering of skis and snowboards, 
-      featuring low-power sensors and a connected mobile interface. As QA, I wrote and executed test specifications.`,
-      skills: ['Quality Assurance', 'Test Planning', 'GitHub', 'Markdown'],
-      github: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4',
-      image: 'coris.png',
-
-    }
+  private projectsBase = [
+    // Sorted newest → oldest
+    { title: 'VR & AI Interview Simulator', period: 'Feb 2026', skills: ['SPEECH RECOGNITION', 'VISIONOS', 'SWIFTUI', 'AI'], github: 'https://github.com/augustinrouillard/Virtual-interview', image: 'vision.png', tKey: 1 },
+    { title: 'POLL-DOCKER Microservices', period: 'Dec 2025', skills: ['DOCKER', 'DEVOPS', 'POSTGRESQL', 'MICROSERVICES'], github: 'https://github.com/habicll/POLL-DOCKER', image: 'docker.png', tKey: 2 },
+    { title: 'Jenkins CI/CD Pipeline', period: 'Dec 2025', skills: ['QUALITY ASSURANCE', 'TEST PLANNING', 'GITHUB', 'CI/CD'], image: 'jenkins.jpg', tKey: 4 },
+    { title: 'JAVAZ Tower Defense Game', period: 'Nov 2025', skills: ['OOP', 'JAVA', 'LIBGDX', 'GAME DEV'], github: 'https://github.com/habicll/JAVA_ZGame', image: 'Javaz_game.png', tKey: 5 },
+    { title: 'LinkUp Matchmaking Platform', period: 'Oct 2025', skills: ['DJANGO', 'VUE 3', 'REST API', 'MYSQL'], github: 'https://github.com/habicll/LinkUp', image: 'linkup.jpg', tKey: 6 },
+    { title: 'Grape — Angular Portfolio', period: 'Sep 2025', skills: ['ANGULAR', 'TYPESCRIPT', 'SPA', 'RESPONSIVE'], github: 'https://github.com/habicll/Grapes', image: 'grape.jpg', tKey: 7 },
+    { title: 'Employee API — Spring Boot', period: 'Aug 2025', skills: ['SPRING BOOT', 'JPA', 'REST', 'JAVA 21'], github: '', image: 'java.jpg', tKey: 8 },
+    { title: 'Intermarché Wine & Cheese Pairing', period: 'Apr 2025 — Jun 2025', skills: ['BUBBLE.IO', 'TECH LEAD', 'API', 'DATA'], github: 'https://github.com/algosup/2024-2025-project-5-bubble-intermarche-team-6', image: 'Inter.jpeg', tKey: 9 },
+    { title: 'CrippleFN — Blockchain x AI', period: 'May 2025', skills: ['AI', 'PYTHON', 'BLOCKCHAIN', 'SYSTEM DESIGN'], github: 'https://github.com/Marwane666/CrippleFN/tree/blockchain', image: 'Cripple.jpeg', tKey: 10 },
+    { title: 'FPGA Web Simulator — CNES', period: 'Feb 2025 — Mar 2025', skills: ['TECHNICAL WRITING', 'FPGA', 'DOCUMENTATION'], github: 'https://github.com/algosup/2024-2025-project-4-web-fpga-team-5', image: 'Cnes.jpeg', tKey: 11 },
+    { title: 'Real-time Chat Application', period: 'Feb 2025', skills: ['SYSTEM CORE', 'NEXT.JS 16', 'RUST', 'WEBSOCKET'], image: 'discord.png', tKey: 0 },
+    { title: 'Fichotron — GenAI Hackathon', period: 'Jan 2025 — Feb 2025', skills: ['PYTHON', 'AWS', 'GENERATIVE AI', 'DATA'], github: 'https://github.com/GuillotSamuel/GenAI_hackaton', image: 'fichotron.JPG', tKey: 12 },
+    { title: 'Quickest Path — C++ Algorithm', period: 'Jan 2025 — Feb 2025', skills: ['C++', 'PROJECT MANAGEMENT', 'ALGORITHM'], github: 'https://github.com/algosup/2024-2025-project-3-quickest-path-team-5', image: 'Quickestpath.png', tKey: 13 },
+    { title: 'Avalanche NFT Hackathon', period: 'Oct 2024', skills: ['BLOCKCHAIN', 'SMART CONTRACTS', 'NFC', 'PROTOCOL 9'], github: 'https://github.com/0xBelnadris/hackaton-blockchain-vierzon-2024', image: 'mooguis.png', tKey: 3 },
+    { title: 'Frogger FPGA', period: 'Sep 2024 — Oct 2024', skills: ['VERILOG', 'FPGA', 'HARDWARE'], github: 'https://github.com/algosup/2024-2025-project-1-fpga-team-2', image: 'frogger.jpeg', tKey: 14 },
+    { title: 'Adopte Un Candidat — Evolution', period: 'Apr 2024 — Jun 2024', skills: ['UX/UI', 'PROGRAM MANAGEMENT', 'FLUTTER'], github: 'https://github.com/algosup/2023-2024-project-5-flutter-team-3', image: 'evolution.png', tKey: 15 },
+    { title: 'SportShield — Corris Innovation', period: 'Mar 2024 — Apr 2024', skills: ['QA', 'EMBEDDED', 'IOT'], github: 'https://github.com/algosup/2023-2024-project-4-SPORTSHIELD-team-4', image: 'coris.png', tKey: 16 },
   ];
+
+  projects = computed(() => {
+    const t = this.i18n.t().projects;
+    const summaryKeys = ['p0Summary','p1Summary','p2Summary','p3Summary','p4Summary','p5Summary','p6Summary','p7Summary','p8Summary','p9Summary','p10Summary','p11Summary','p12Summary','p13Summary','p14Summary','p15Summary','p16Summary'];
+    const descKeys = ['p0Desc','p1Desc','p2Desc','p3Desc','p4Desc','p5Desc','p6Desc','p7Desc','p8Desc','p9Desc','p10Desc','p11Desc','p12Desc','p13Desc','p14Desc','p15Desc','p16Desc'];
+    return this.projectsBase.map((p) => ({
+      ...p,
+      summary: (t as any)[summaryKeys[p.tKey]] || '',
+      description: (t as any)[descKeys[p.tKey]] || '',
+    }));
+  });
+
+  featuredProjects = computed(() => this.projects().slice(0, 2));
+
+  visibleProjects = computed(() => {
+    const all = this.projects();
+    return this.showAll() ? all.slice(2) : all.slice(2, 8);
+  });
+
+  ngAfterViewInit() {
+    this.setupScrollReveal();
+  }
+
+  ngOnDestroy() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  // ===== 3D TILT EFFECT ON PROJECT CARDS =====
+  onCardTilt(event: MouseEvent, target: EventTarget | null) {
+    if (!target || !(target instanceof HTMLElement)) return;
+    const rect = target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
+    target.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
+
+    const spotlight = target.querySelector('.card-spotlight') as HTMLElement;
+    if (spotlight) {
+      spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0,240,255,0.07) 0%, transparent 60%)`;
+      spotlight.style.opacity = '1';
+    }
+  }
+
+  onCardTiltLeave(target: EventTarget | null) {
+    if (!target || !(target instanceof HTMLElement)) return;
+    target.style.transform = '';
+    const spotlight = target.querySelector('.card-spotlight') as HTMLElement;
+    if (spotlight) {
+      spotlight.style.opacity = '0';
+    }
+  }
 
   openProject(project: any) {
     this.selectedProject = project;
+    document.body.style.overflow = 'hidden';
   }
 
   closeProject() {
     this.selectedProject = null;
+    document.body.style.overflow = '';
+  }
+
+  toggleShowAll() {
+    this.showAll.set(!this.showAll());
+    if (this.showAll()) {
+      setTimeout(() => this.setupScrollReveal(), 50);
+    }
+  }
+
+  private setupScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal:not(.revealed)');
+    if (!revealElements.length) return;
+
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('revealed');
+            }, index * 80);
+            this.observer?.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px',
+      }
+    );
+
+    revealElements.forEach((el) => this.observer?.observe(el));
   }
 }

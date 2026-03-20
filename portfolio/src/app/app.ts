@@ -1,24 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { filter } from 'rxjs/operators';
 import { NavbarComponent } from './pages/navbar/navbar';
+import { FooterComponent } from './pages/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule, NavbarComponent],
+  imports: [CommonModule, RouterOutlet, RouterModule, NavbarComponent, FooterComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('portfolio');
-  showNav = true;
-
-  constructor(private router: Router) {
-    this.showNav = this.router.url !== '/';
-    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e: any) => {
-      const url = e.urlAfterRedirects ?? e.url;
-      this.showNav = url !== '/';
-    });
-  }
+  protected readonly title = 'Habi Cailleau';
 }
