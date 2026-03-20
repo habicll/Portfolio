@@ -771,7 +771,7 @@
 
 @media (max-width: 640px) {
   .hero {
-    padding: 6rem 1.25rem 3rem;
+    padding: 6rem 1.25rem 6rem;
   }
 
   .heading-line {
@@ -825,7 +825,11 @@
   }
 
   .scroll-indicator {
-    bottom: 1.5rem;
+    position: relative;
+    bottom: auto;
+    margin-top: 2.5rem;
+    transform: none;
+    left: auto;
   }
 
   .floating-badge {

@@ -15,9 +15,9 @@ export class About implements AfterViewInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
 
   frontendSkills = [
-    { name: 'ANGULAR & VUE.JS', level: 90, color: 'fill-cyan', animated: false },
-    { name: 'TYPESCRIPT', level: 85, color: 'fill-violet', animated: false },
-    { name: 'TAILWIND CSS', level: 92, color: 'fill-mixed', animated: false },
+    { name: 'ANGULAR & VUE.JS', level: 70, color: 'fill-cyan', animated: false },
+    { name: 'TYPESCRIPT', level: 65, color: 'fill-violet', animated: false },
+    { name: 'TAILWIND CSS', level: 80, color: 'fill-mixed', animated: false },
   ];
 
   frontendChips = ['JAVASCRIPT', 'HTML/CSS', 'VITE', 'RESPONSIVE DESIGN'];
