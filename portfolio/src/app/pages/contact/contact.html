@@ -1,119 +1,79 @@
-<section class="contact-hero">
-  <div class="contact-hero-bg"></div>
+<!-- ===== CONTACT PAGE ===== -->
+<section class="contact-page">
+  <!-- Status widget -->
+  <div class="contact-status reveal">
+    <span class="status-line">STATUS: AWAITING_INPUT</span>
+    <span class="status-line">LOC: 47.2184_N_1.5536_W</span>
+    <span class="status-line">CHANNEL: OPEN</span>
+  </div>
 
-  <div class="contact-inner">
-    <!-- Left Column -->
-    <div class="contact-left">
-      <h1 class="contact-heading reveal-contact">
-        {{ i18n.t().contact.heading1 }}<br/>
-        <span class="gradient-text-cyan">{{ i18n.t().contact.heading2 }}</span>
+  <div class="contact-content">
+    <div class="contact-header reveal">
+      <h1 class="contact-heading">
+        {{ i18n.t().contact.heading1 }}
+        <span class="text-gold-italic">{{ i18n.t().contact.heading2 }}</span>
       </h1>
-      <div class="typing-line reveal-contact">
-        <span class="typing-prefix">&gt;</span>
-        <span class="typing-text">{{ typedText }}</span>
-        <span class="typing-cursor" [class.blink-off]="!showCursor">_</span>
-      </div>
-      <p class="contact-subtitle reveal-contact">
-        {{ i18n.t().contact.subtitle }}
-      </p>
+      <p class="contact-subtitle">{{ i18n.t().contact.subtitle }}</p>
+    </div>
 
-      <!-- Resume Card -->
-      <div class="resume-card reveal-contact">
-        <div class="resume-info">
-          <span class="resume-label">{{ i18n.t().contact.resumeLabel }}</span>
-          <span class="resume-title">{{ i18n.t().contact.resumeTitle }}</span>
+    <form class="contact-form reveal" (ngSubmit)="sendMessage()">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">{{ i18n.t().contact.labelName }}</label>
+          <input type="text" class="form-input" [placeholder]="i18n.t().contact.placeholderName"
+                 [(ngModel)]="formData.name" name="name" required />
         </div>
-        <a href="Habi%20CAILLEAU%20CV%20Alt.pdf" target="_blank" class="resume-download" title="Download Resume">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="form-field">
+          <label class="form-label">{{ i18n.t().contact.labelEmail }}</label>
+          <input type="email" class="form-input" [placeholder]="i18n.t().contact.placeholderEmail"
+                 [(ngModel)]="formData.email" name="email" required />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label">{{ i18n.t().contact.labelMessage }}</label>
+        <textarea class="form-input form-textarea" [placeholder]="i18n.t().contact.placeholderMessage"
+                  [(ngModel)]="formData.message" name="message" required></textarea>
+      </div>
+
+      <div class="contact-actions">
+        <button type="submit" class="btn-gold" [disabled]="isSending">
+          {{ isSending ? i18n.t().contact.btnSending : (isSent ? i18n.t().contact.btnSent : i18n.t().contact.btnSend) }}
+          <svg *ngIf="!isSending && !isSent" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+
+        <a href="Habi%20CAILLEAU%20CV%20Alt.pdf" target="_blank" class="btn-outline resume-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
+          {{ i18n.t().contact.downloadResume }}
         </a>
-      </div>
 
-      <!-- Social Links -->
-      <div class="social-links reveal-contact">
-        <a href="https://www.linkedin.com/in/habi-cailleau-3b72b5293" target="_blank" rel="noopener noreferrer" class="social-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-          </svg>
-          LINKEDIN
-        </a>
-        <a href="https://github.com/habicll" target="_blank" rel="noopener noreferrer" class="social-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="16 18 22 12 16 6"/>
-            <polyline points="8 6 2 12 8 18"/>
-          </svg>
-          GITHUB
-        </a>
-      </div>
-
-      <!-- Network Status Widget with Canvas -->
-      <div class="network-widget reveal-contact">
-        <div class="network-visual">
-          <canvas #networkCanvas class="network-canvas"></canvas>
-        </div>
-        <div class="network-info">
-          <span class="network-label">{{ i18n.t().contact.networkLabel }}</span>
-          <span class="network-value">
-            <span class="network-dot-green"></span>
-            {{ i18n.t().contact.networkValue }}
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column - Form -->
-    <div class="contact-right reveal-contact">
-      <div class="contact-form-card">
-        <form class="contact-form" (ngSubmit)="sendMessage()" #contactForm="ngForm" autocomplete="off">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">{{ i18n.t().contact.labelName }}</label>
-              <input type="text" name="name" [(ngModel)]="formData.name" required
-                     [placeholder]="i18n.t().contact.placeholderName" class="form-input" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">{{ i18n.t().contact.labelEmail }}</label>
-              <input type="email" name="email" [(ngModel)]="formData.email" required
-                     [placeholder]="i18n.t().contact.placeholderEmail" class="form-input" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">{{ i18n.t().contact.labelObjective }}</label>
-            <div class="select-wrapper">
-              <select name="objective" [(ngModel)]="formData.objective" class="form-select">
-                <option value="collaboration">{{ i18n.t().contact.optCollab }}</option>
-                <option value="freelance">{{ i18n.t().contact.optFreelance }}</option>
-                <option value="fulltime">{{ i18n.t().contact.optFulltime }}</option>
-                <option value="other">{{ i18n.t().contact.optOther }}</option>
-              </select>
-              <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">{{ i18n.t().contact.labelMessage }}</label>
-            <textarea name="message" [(ngModel)]="formData.message" required rows="5"
-                      [placeholder]="i18n.t().contact.placeholderMessage" class="form-textarea"></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn" [disabled]="!contactForm.form.valid || isSending">
-            <span *ngIf="!isSending && !isSent">{{ i18n.t().contact.btnSend }}</span>
-            <span *ngIf="isSending">{{ i18n.t().contact.btnSending }}</span>
-            <span *ngIf="isSent">{{ i18n.t().contact.btnSent }}</span>
-            <svg *ngIf="!isSending && !isSent" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        <div class="contact-social">
+          <a href="https://github.com/habicll" target="_blank" class="social-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
             </svg>
-          </button>
-        </form>
+            GITHUB
+          </a>
+          <a href="https://www.linkedin.com/in/habi-cailleau-3b72b5293" target="_blank" class="social-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LINKEDIN
+          </a>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
+
+  <!-- Decorative H watermark -->
+  <div class="contact-watermark">H</div>
 </section>

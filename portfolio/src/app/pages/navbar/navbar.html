@@ -1,23 +1,32 @@
-<header class="navbar" [class.navbar-scrolled]="isScrolled">
+<header class="navbar" [class.navbar-scrolled]="isScrolled" [class.navbar-hidden]="isScrolled">
   <div class="navbar-inner">
     <!-- Brand -->
     <a routerLink="/" class="navbar-brand" (click)="closeMenu()">
-      <span class="brand-text">Habi Cailleau</span>
+      <span class="brand-text">HABI</span>
     </a>
 
     <!-- Desktop Nav -->
     <nav class="navbar-links">
-      <a routerLink="/projects" routerLinkActive="active-link" class="nav-link">{{ i18n.t().nav.projects }}</a>
-      <a routerLink="/about" routerLinkActive="active-link" class="nav-link">{{ i18n.t().nav.skills }}</a>
-      <a routerLink="/contact" routerLinkActive="active-link" class="nav-link">{{ i18n.t().nav.contact }}</a>
+      <a routerLink="/projects" routerLinkActive="active-link" class="nav-link">
+        {{ i18n.t().nav.projects }}
+      </a>
+      <a routerLink="/timeline" routerLinkActive="active-link" class="nav-link">
+        {{ i18n.t().nav.timeline }}
+      </a>
+      <a routerLink="/contact" routerLinkActive="active-link" class="nav-link">
+        {{ i18n.t().nav.contact }}
+      </a>
     </nav>
 
-    <!-- Language Toggle + Hamburger -->
+    <!-- Language Toggle -->
     <div class="navbar-actions">
-      <button class="lang-toggle" (click)="i18n.toggleLang()" [attr.aria-label]="'Switch to ' + (i18n.lang() === 'en' ? 'French' : 'English')">
-        <span class="lang-option" [class.lang-active]="i18n.lang() === 'en'">EN</span>
-        <span class="lang-divider">/</span>
-        <span class="lang-option" [class.lang-active]="i18n.lang() === 'fr'">FR</span>
+      <button class="lang-toggle" (click)="i18n.toggleLang()" [attr.aria-label]="'Switch language'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="lang-icon">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="lang-current">{{ i18n.lang() === 'en' ? 'EN' : 'FR' }}</span>
       </button>
 
       <!-- Mobile Hamburger -->
@@ -33,7 +42,7 @@
   <nav class="mobile-menu" *ngIf="isMenuOpen()">
     <a routerLink="/" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.home }}</a>
     <a routerLink="/projects" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.projects }}</a>
-    <a routerLink="/about" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.skills }}</a>
+    <a routerLink="/timeline" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.timeline }}</a>
     <a routerLink="/contact" routerLinkActive="active-link" class="mobile-link" (click)="closeMenu()">{{ i18n.t().nav.contact }}</a>
   </nav>
 </header>

@@ -1,39 +1,29 @@
-# Portfolio Redesign — Obsidian Nexus Theme + Wow Features
+# Golden Chronos — Fix & Feature TODO
 
-## Progress Tracker
+## Bugs
+- [x] 1. Projects disappearing on language switch — Fixed: `effect()` in projects.ts re-applies `.revealed` class when lang changes
+- [x] 2. Timeline cards disappearing on language switch — Fixed: `effect()` in timeline.ts re-applies `.revealed` class when lang changes
+- [x] 3. Timeline progress bar accuracy + diamond fill timing — Fixed: `isNodeFilled()` calculates per-node position, diamonds only fill when line reaches them
 
-### Phase 1: Obsidian Nexus Theme
-- [x] **Step 1**: Update `index.html` — Google Fonts (Space Grotesk + Inter), title
-- [x] **Step 2**: Update `tailwind.config.cjs` — Obsidian Nexus color palette, fonts, animations
-- [x] **Step 3**: Update `styles.css` — Global base styles, component utilities, scrollbar
-- [x] **Step 4**: Create Footer component (`footer.ts`, `footer.html`, `footer.css`)
-- [x] **Step 5**: Update App shell (`app.html`, `app.ts`, `app.css`) — Navbar + Footer always visible
-- [x] **Step 6**: Redesign Navbar — Glass effect, cyan CTA, scroll detection
-- [x] **Step 7**: Redesign Home page — Hero, specialty cards, about preview, featured projects
-- [x] **Step 8**: Redesign About/Skills page — Bento grid, progress bars, tech stack, timeline
-- [x] **Step 9**: Redesign Projects page — Masonry grid, modal, stability bars, show more toggle
-- [x] **Step 10**: Redesign Contact page — Split layout, glass form, social links
+## Features
+- [x] 4. Add photo (Habi.jpg) to home page identity section
+- [x] 5. Add resume download button to home page + contact page
+- [x] 6. Fix timeline dates & reorder chronologically (Feb 2026, Sep 2025, Jul-Aug 2025, 2023-2025, Oct 2024, 2019-2022)
+- [x] 7. Top navbar hides on scroll (`.navbar-hidden` class with transition), only sidebar remains
+- [x] 8. Sidebar labels: HOME / PROJECTS / TIMELINE / CONTACT (was IDENTITY/PORTFOLIO/CHRONOS/NEXUS)
+- [x] 9. Simplify contact page wording — removed jargon (IDENTIFIER_NAME → YOUR NAME, SECURE_EMAIL → YOUR EMAIL, etc.)
+- [x] 10. Remove "nexus" everywhere — replaced with "connection"/"touch" (0 occurrences remaining)
+- [x] 11. Navbar: HABI logo → home, PROJECTS / TIMELINE / CONTACT links only (removed PORTFOLIO first link)
 
-### Phase 2: Wow Features
-- [x] **Step 11**: 3D Wireframe Icosahedron — Canvas-rendered rotating wireframe in hero, responds to scroll
-- [x] **Step 12**: Interactive Particle Field — Mouse-reactive particles with connection lines in hero background
-- [x] **Step 13**: Magnetic Card Hover — Specialty cards follow cursor with subtle translate + scale
-- [x] **Step 14**: 3D Tilt Effect — Featured project cards + all project cards tilt with perspective on hover
-- [x] **Step 15**: Cursor-Following Spotlight — Bento cards + project cards show radial gradient spotlight
-- [x] **Step 16**: Animated Number Counters — Stats count up when scrolled into view
-- [x] **Step 17**: Floating Tech Badges — Angular/Python/Docker icons float around profile photo
-- [x] **Step 18**: Parallax Text — Hero heading lines move at different scroll speeds
-- [x] **Step 19**: Typing Effect — Contact page heading types out "INITIALIZE_CONNECTION" with blinking cursor
-- [x] **Step 20**: Canvas Network Widget — Contact page animated node graph replacing static dots
-- [x] **Step 21**: Magnetic Tech Stack Icons — About page stack icons follow cursor subtly
-- [x] **Step 22**: Glow Pulse CTA — Primary hero button pulses with cyan glow animation
-- [x] **Step 23**: Build verification — Compiled successfully with zero errors (270.20 kB)
-
-## Design System
-- Base: #131314 (obsidian black)
-- Primary accent: #00f0ff (neon cyan)
-- Secondary accent: #b600f8 (electric violet)
-- Typography: Space Grotesk (display) + Inter (body)
-- Glassmorphism, tonal layering, ghost borders
-- Canvas animations run outside Angular zone for performance
-- 300ms cubic-bezier(0.4, 0, 0.2, 1) easing on all interactions
+## Files Modified
+- `translation.service.ts` — Full EN/FR translations updated, dates corrected, jargon removed
+- `navbar.html` — Removed PORTFOLIO link, kept PROJECTS/TIMELINE/CONTACT
+- `navbar.css` — Added `.navbar-hidden` transition class
+- `timeline.html` — Updated button refs (downloadResume, getInTouch), added isNodeFilled
+- `timeline.ts` — Fixed lang switch bug, reordered experiences, per-node progress calculation
+- `timeline.css` — Diamond node fill animation tied to progress
+- `projects.ts` — Fixed lang switch bug with effect() re-applying revealed class
+- `home.html` — Added photo, resume button, simplified form labels
+- `home.css` — Added photo wrapper + identity-actions styles
+- `contact.html` — Removed "nexus" from status widget, added resume download link
+- `app.html` — Sidebar labels updated to HOME/PROJECTS/TIMELINE/CONTACT

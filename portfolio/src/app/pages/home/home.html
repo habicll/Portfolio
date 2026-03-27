@@ -1,233 +1,181 @@
+<!-- ===== HERO SECTION ===== -->
 <section class="hero">
-  <!-- Background atmospheric effects -->
-  <div class="hero-bg-gradient"></div>
-  <div class="hero-bg-mesh"></div>
-  <div class="hero-glow-orb orb-1"></div>
-  <div class="hero-glow-orb orb-2"></div>
-
-  <!-- Interactive particle field -->
   <canvas #particleCanvas class="particle-canvas"></canvas>
 
-  <div class="hero-content">
-    <div class="hero-left" #heroLeft>
-      <!-- Status Badge -->
-      <div class="status-badge" [class.revealed]="animState.badge">
-        <span class="status-dot"></span>
-        <span class="status-text">{{ i18n.t().home.statusBadge }}</span>
-      </div>
-
-      <!-- Display Heading with parallax -->
-      <h1 class="hero-heading" [class.revealed]="animState.heading" #heroHeading>
-        <span class="heading-line" data-parallax="0.03">{{ i18n.t().home.headingLine1 }}</span>
-        <span class="heading-line heading-gradient" data-parallax="0.05">{{ i18n.t().home.headingLine2 }}</span>
-        <span class="heading-line heading-gradient" data-parallax="0.07">{{ i18n.t().home.headingLine3 }}</span>
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="hero-subtitle" [class.revealed]="animState.subtitle">
-        {{ i18n.t().home.subtitle }}
-        <strong>{{ i18n.t().home.subtitleBold1 }}</strong>{{ i18n.t().home.subtitleMid }}
-        <strong>{{ i18n.t().home.subtitleBold2 }}</strong>{{ i18n.t().home.subtitleEnd }}
-        <strong>{{ i18n.t().home.subtitleBold3 }}</strong>.
-      </p>
-
-      <!-- CTAs -->
-      <div class="hero-ctas" [class.revealed]="animState.ctas">
-        <a routerLink="/projects" class="btn-primary btn-glow-pulse">
-          {{ i18n.t().home.ctaExplore }}
-        </a>
-        <a href="Habi%20CAILLEAU%20CV%20Alt.pdf" target="_blank" class="btn-glass">
-          {{ i18n.t().home.ctaResume }}
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-right" [class.revealed]="animState.cards">
-      <!-- 3D Wireframe Sphere Canvas -->
-      <canvas #wireframeCanvas class="wireframe-canvas"></canvas>
-
-      <!-- Specialty Cards Grid with magnetic hover -->
-      <div class="specialty-grid" #specialtyGrid>
-        <div class="specialty-card card-1" #magCard
-             (mousemove)="onCardMouseMove($event, 0)"
-             (mouseleave)="onCardMouseLeave(0)">
-          <div class="card-icon icon-cyan">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <h3 class="card-title">{{ i18n.t().home.card1Title }}</h3>
-          <p class="card-desc">{{ i18n.t().home.card1Desc }}</p>
-        </div>
-
-        <div class="specialty-card card-2" #magCard
-             (mousemove)="onCardMouseMove($event, 1)"
-             (mouseleave)="onCardMouseLeave(1)">
-          <div class="card-icon icon-violet">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <line x1="8" y1="21" x2="16" y2="21"/>
-              <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-          </div>
-          <h3 class="card-title">{{ i18n.t().home.card2Title }}</h3>
-          <p class="card-desc">{{ i18n.t().home.card2Desc }}</p>
-        </div>
-
-        <div class="specialty-card card-3" #magCard
-             (mousemove)="onCardMouseMove($event, 2)"
-             (mouseleave)="onCardMouseLeave(2)">
-          <div class="card-icon icon-cyan">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-              <line x1="12" y1="22.08" x2="12" y2="12"/>
-            </svg>
-          </div>
-          <h3 class="card-title">{{ i18n.t().home.card3Title }}</h3>
-          <p class="card-desc">{{ i18n.t().home.card3Desc }}</p>
-        </div>
-
-        <div class="specialty-card card-4" #magCard
-             (mousemove)="onCardMouseMove($event, 3)"
-             (mouseleave)="onCardMouseLeave(3)">
-          <div class="card-icon icon-violet">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </div>
-          <h3 class="card-title">{{ i18n.t().home.card4Title }}</h3>
-          <p class="card-desc">{{ i18n.t().home.card4Desc }}</p>
-        </div>
-      </div>
-    </div>
+  <!-- Status widget top-right -->
+  <div class="hero-status" [class.revealed]="animState.status">
+    <span class="status-line">SYSTEM_STATUS: OPTIMAL</span>
+    <span class="status-line">LATENCY: <span class="text-gold">1ms</span></span>
+    <span class="status-line">UTC: {{ utcTime }}</span>
   </div>
 
-  <!-- Scroll Indicator -->
+  <div class="hero-center" [class.revealed]="animState.heading">
+    <h1 class="hero-title">
+      <span class="hero-title-gold">FULLSTACK DEVELOPER</span>
+    </h1>
+  </div>
+
+  <!-- Scroll indicator -->
   <div class="scroll-indicator" [class.revealed]="animState.scroll">
-    <span class="scroll-text">{{ i18n.t().home.scrollText }}</span>
+    <span class="scroll-text">SCROLL</span>
     <div class="scroll-line">
       <div class="scroll-line-inner"></div>
     </div>
   </div>
 </section>
 
-<!-- About Preview Section -->
-<section class="about-preview">
-  <div class="about-preview-inner">
-    <div class="about-preview-left reveal" #aboutImg>
-      <div class="about-img-wrapper">
-        <div class="about-img-glow"></div>
-        <img src="Habi.jpg" alt="Habi Cailleau" class="about-img" />
+<!-- ===== 01 // IDENTITY ===== -->
+<section class="identity-section">
+  <div class="identity-inner">
+    <div class="identity-left reveal">
+      <span class="section-label">01 // {{ i18n.t().home.identityLabel }}</span>
+      <h2 class="identity-heading">
+        {{ i18n.t().home.identityHeading1 }}
+        <span class="text-gold-italic">{{ i18n.t().home.identityHeading2 }}</span>
+      </h2>
+      <p class="identity-text">
+        {{ i18n.t().home.identityText }}
+      </p>
+
+      <!-- Photo + Resume -->
+      <div class="identity-actions">
+        <a href="Habi%20CAILLEAU%20CV%20Alt.pdf" target="_blank" class="btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          {{ i18n.t().home.downloadResume }}
+        </a>
       </div>
     </div>
-    <div class="about-preview-right reveal" #aboutText>
-      <span class="section-label">{{ i18n.t().home.aboutLabel }}</span>
-      <h2 class="about-heading">{{ i18n.t().home.aboutHeading1 }}<br/><span class="gradient-text-cyan">{{ i18n.t().home.aboutHeading2 }}</span></h2>
-      <p class="about-text">
-        {{ i18n.t().home.aboutText }}
-      </p>
-      <div class="about-stats">
-        <div class="stat-item">
-          <span class="stat-number" #counter data-target="17">0</span>
-          <span class="stat-suffix"></span>
-          <span class="stat-label">{{ i18n.t().home.statProjects }}</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" #counter data-target="12">0</span>
-          <span class="stat-suffix"></span>
-          <span class="stat-label">{{ i18n.t().home.statTech }}</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" #counter data-target="3">0</span>
-          <span class="stat-suffix"></span>
-          <span class="stat-label">{{ i18n.t().home.statHackathon }}</span>
+    <div class="identity-right reveal">
+      <!-- Photo -->
+      <div class="identity-photo-wrapper">
+        <img src="Habi.jpg" alt="Habi Cailleau" class="identity-photo" />
+        <div class="identity-photo-border"></div>
+      </div>
+
+      <span class="stack-label">STACK_V4.0</span>
+      <div class="tech-accordion">
+        <div class="accordion-item" *ngFor="let item of techAccordion; let i = index"
+             [class.active]="activeAccordion === i"
+             (click)="toggleAccordion(i)">
+          <div class="accordion-header">
+            <span>{{ item.title }}</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>{{ item.description }}</p>
+              <div class="accordion-chips">
+                <span class="tech-chip" *ngFor="let chip of item.chips">{{ chip }}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <a routerLink="/about" class="btn-tertiary">
-        {{ i18n.t().home.viewProfile }}
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="5" y1="12" x2="19" y2="12"/>
-          <polyline points="12 5 19 12 12 19"/>
-        </svg>
-      </a>
     </div>
   </div>
 </section>
 
-<!-- Featured Projects Preview -->
-<section class="featured-section">
-  <div class="featured-inner">
-    <div class="featured-header reveal" #featuredHeader>
-      <span class="section-label">{{ i18n.t().home.featuredLabel }}</span>
-      <h2 class="featured-heading">{{ i18n.t().home.featuredHeading1 }}<br/><span class="gradient-text-mixed">{{ i18n.t().home.featuredHeading2 }}</span></h2>
-    </div>
-
-    <div class="featured-grid">
-      <div class="featured-card featured-large reveal tilt-card" #featCard1
-           (mousemove)="onTiltMove($event, $event.currentTarget)"
-           (mouseleave)="onTiltLeave($event.currentTarget)">
-        <div class="featured-card-bg">
-          <img src="discord.png" alt="Real-time Chat" />
-        </div>
-        <div class="featured-card-content">
-          <div class="featured-tags">
-            <span class="tech-chip">RUST</span>
-            <span class="tech-chip">NEXT.JS</span>
-          </div>
-          <h3 class="featured-title">Real-time Chat Application</h3>
-          <p class="featured-desc">{{ i18n.t().home.feat1Desc }}</p>
-          <a href="https://github.com/augustinrouillard/Virtual-interview" target="_blank" class="btn-tertiary">
-            {{ i18n.t().home.sourceCode }}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="featured-card featured-small reveal tilt-card" #featCard2
-           (mousemove)="onTiltMove($event, $event.currentTarget)"
-           (mouseleave)="onTiltLeave($event.currentTarget)">
-        <div class="featured-card-content">
-          <div class="featured-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <line x1="8" y1="21" x2="16" y2="21"/>
-              <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-          </div>
-          <span class="tech-chip" style="color: #00f0ff;">{{ i18n.t().home.feat2Chip }}</span>
-          <h3 class="featured-title">VR & AI Interview Simulator</h3>
-          <p class="featured-desc">{{ i18n.t().home.feat2Desc }}</p>
-        </div>
-      </div>
-
-      <div class="featured-card featured-small reveal tilt-card" #featCard3
-           (mousemove)="onTiltMove($event, $event.currentTarget)"
-           (mouseleave)="onTiltLeave($event.currentTarget)">
-        <div class="featured-card-content">
-          <div class="featured-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b600f8" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            </svg>
-          </div>
-          <span class="tech-chip" style="color: #b600f8;">{{ i18n.t().home.feat3Chip }}</span>
-          <h3 class="featured-title">Avalanche NFT Hackathon</h3>
-          <p class="featured-desc">{{ i18n.t().home.feat3Desc }}</p>
-        </div>
+<!-- ===== 02 // SELECTED WORKS ===== -->
+<section class="works-section">
+  <div class="works-inner">
+    <div class="works-header reveal">
+      <span class="section-label">02 // {{ i18n.t().home.worksLabel }}</span>
+      <div class="works-header-row">
+        <h2 class="works-heading">{{ i18n.t().home.worksHeading }}</h2>
+        <a routerLink="/projects" class="btn-tertiary works-view-all">
+          {{ i18n.t().home.viewAllProjects }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
       </div>
     </div>
 
-    <div class="featured-cta reveal" #featCta>
-      <a routerLink="/projects" class="btn-glass">
-        {{ i18n.t().home.viewAll }}
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9"/>
+    <div class="works-grid">
+      <!-- Featured project cards -->
+      <div class="work-card reveal" *ngFor="let project of featuredProjects; let i = index"
+           [class.work-card-wide]="i === 2"
+           (mousemove)="onCardTilt($event, $event.currentTarget)"
+           (mouseleave)="onCardTiltLeave($event.currentTarget)">
+        <div class="work-card-spotlight"></div>
+        <div class="work-card-content">
+          <div class="work-card-header">
+            <span class="work-card-category">{{ project.categoryLabel }}</span>
+            <a *ngIf="project.github" [href]="project.github" target="_blank" class="work-card-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </a>
+          </div>
+          <h3 class="work-card-title">{{ project.title }}</h3>
+          <p class="work-card-desc">{{ project.summary }}</p>
+          <div class="work-card-chips">
+            <span class="tech-chip" *ngFor="let skill of project.skills.slice(0, 2)">{{ skill }}</span>
+          </div>
+        </div>
+        <div class="work-card-image" *ngIf="i === 2 && project.image">
+          <img [src]="project.image" [alt]="project.title" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 // GET IN TOUCH ===== -->
+<section class="contact-preview-section">
+  <div class="contact-preview-inner">
+    <div class="contact-preview-header reveal">
+      <span class="section-label">03 // {{ i18n.t().home.contactLabel }}</span>
+      <h2 class="contact-preview-heading">
+        {{ i18n.t().home.contactHeading1 }}
+        <span class="text-gold-italic">{{ i18n.t().home.contactHeading2 }}</span>
+      </h2>
+    </div>
+
+    <form class="contact-mini-form reveal" (ngSubmit)="sendMessage()">
+      <div class="form-field">
+        <label class="form-label">{{ i18n.t().home.labelName }}</label>
+        <input type="text" class="form-input" [placeholder]="i18n.t().home.placeholderName"
+               [(ngModel)]="formData.name" name="name" />
+      </div>
+      <div class="form-field">
+        <label class="form-label">{{ i18n.t().home.labelEmail }}</label>
+        <input type="email" class="form-input" [placeholder]="i18n.t().home.placeholderEmail"
+               [(ngModel)]="formData.email" name="email" />
+      </div>
+      <div class="form-field form-field-full">
+        <label class="form-label">{{ i18n.t().home.labelMessage }}</label>
+        <textarea class="form-input form-textarea" [placeholder]="i18n.t().home.placeholderMessage"
+                  [(ngModel)]="formData.message" name="message"></textarea>
+      </div>
+      <button type="submit" class="btn-gold" [disabled]="isSending">
+        {{ isSending ? i18n.t().home.btnSending : (isSent ? i18n.t().home.btnSent : i18n.t().home.btnSend) }}
+      </button>
+    </form>
+
+    <div class="contact-preview-links reveal">
+      <a href="https://github.com/habicll" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
         </svg>
+        GITHUB
+      </a>
+      <a href="https://www.linkedin.com/in/habi-cailleau-3b72b5293" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LINKEDIN
       </a>
     </div>
   </div>

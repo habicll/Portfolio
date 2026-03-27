@@ -1,0 +1,84 @@
+<!-- ===== TIMELINE HERO ===== -->
+<section class="timeline-hero">
+  <div class="timeline-hero-inner">
+    <div class="timeline-hero-left reveal">
+      <span class="section-label">{{ i18n.t().timeline.label }}</span>
+      <h1 class="timeline-heading">
+        {{ i18n.t().timeline.heading1 }}
+        <span class="text-gold-italic">{{ i18n.t().timeline.heading2 }}</span>
+      </h1>
+      <p class="timeline-subtitle">{{ i18n.t().timeline.subtitle }}</p>
+    </div>
+    <div class="timeline-hero-right reveal">
+      <div class="timeline-clock">
+        <span class="clock-status">SYNC_STATUS: ACTIVE</span>
+        <span class="clock-time">{{ utcTime }}</span>
+        <span class="clock-coords">LAT: 47.2184° N | LON: 1.5536° W</span>
+      </div>
+    </div>
+  </div>
+  <!-- Large background text -->
+  <div class="timeline-bg-text">CHRONOS</div>
+</section>
+
+<!-- ===== VERTICAL TIMELINE ===== -->
+<section class="timeline-section">
+  <div class="timeline-container">
+    <!-- Central vertical line -->
+    <div class="timeline-line">
+      <div class="timeline-line-progress" [style.height.%]="lineProgress"></div>
+    </div>
+
+    <div class="timeline-entries">
+      <div class="timeline-entry"
+           *ngFor="let exp of experiences(); let i = index; let odd = odd"
+           [class.entry-right]="odd"
+           [class.entry-left]="!odd"
+           [attr.data-index]="i">
+
+        <!-- Milestone label (only if present) -->
+        <div class="timeline-milestone"
+             *ngIf="exp.milestone"
+             [class.milestone-right]="!odd"
+             [class.milestone-left]="odd">
+          <span class="milestone-label text-gold">{{ exp.milestone }}</span>
+          <span class="milestone-sub" *ngIf="exp.milestoneSub">{{ exp.milestoneSub }}</span>
+        </div>
+        <div class="timeline-milestone-empty" *ngIf="!exp.milestone"></div>
+
+        <!-- Timeline node (diamond) -->
+        <div class="timeline-node" [class.node-filled]="isNodeFilled(i)">
+          <div class="node-diamond"></div>
+        </div>
+
+        <!-- Card -->
+        <div class="timeline-card">
+          <span class="card-period text-gold">{{ exp.period }}</span>
+          <h3 class="card-title">{{ exp.title }}</h3>
+          <span class="card-company">{{ exp.company }}</span>
+          <p class="card-desc">{{ exp.description }}</p>
+          <div class="card-chips" *ngIf="exp.chips && exp.chips.length">
+            <span class="tech-chip" *ngFor="let chip of exp.chips">{{ chip }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOURNEY CONTINUES ===== -->
+<section class="journey-section">
+  <div class="journey-inner reveal">
+    <h2 class="journey-heading">
+      <span class="text-gold-italic">{{ i18n.t().timeline.journeyHeading }}</span>
+    </h2>
+    <div class="journey-ctas">
+      <a href="Habi%20CAILLEAU%20CV%20Alt.pdf" target="_blank" class="btn-gold">
+        {{ i18n.t().timeline.downloadResume }}
+      </a>
+      <a routerLink="/contact" class="btn-outline">
+        {{ i18n.t().timeline.getInTouch }}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,354 @@
+/* ===== Timeline Page — The Golden Chronos ===== */
+
+/* ===== HERO ===== */
+.timeline-hero {
+  position: relative;
+  padding: 8rem 3rem 4rem;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.timeline-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-top: 1.5rem;
+  color: var(--text-primary);
+}
+
+.timeline-subtitle {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-top: 1.5rem;
+  max-width: 520px;
+}
+
+/* Clock widget */
+.timeline-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.clock-status {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.clock-time {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.clock-coords {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Background text */
+.timeline-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 15vw, 14rem);
+  font-weight: 700;
+  color: rgba(201, 168, 76, 0.03);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== VERTICAL TIMELINE ===== */
+.timeline-section {
+  padding: 4rem 3rem 6rem;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.timeline-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Central line */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(201, 168, 76, 0.08);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.timeline-line-progress {
+  width: 100%;
+  background: linear-gradient(to bottom, var(--gold), rgba(201, 168, 76, 0.3));
+  transition: height 0.05s linear;
+  border-radius: 0 0 1px 1px;
+}
+
+/* Entries */
+.timeline-entries {
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-entry {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+/* Left-aligned card (card on left, milestone on right) */
+.entry-left .timeline-card {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+}
+
+.entry-left .timeline-node {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.entry-left .timeline-milestone,
+.entry-left .timeline-milestone-empty {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: left;
+}
+
+/* Right-aligned card (milestone on left, card on right) */
+.entry-right .timeline-milestone,
+.entry-right .timeline-milestone-empty {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+}
+
+.entry-right .timeline-node {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.entry-right .timeline-card {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Diamond Node */
+.timeline-node {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+  z-index: 2;
+}
+
+.node-diamond {
+  width: 12px;
+  height: 12px;
+  background: var(--bg-primary);
+  border: 1.5px solid rgba(201, 168, 76, 0.25);
+  transform: rotate(45deg);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-node.node-filled .node-diamond {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.4);
+}
+
+/* Milestone */
+.timeline-milestone,
+.timeline-milestone-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.25rem;
+}
+
+.milestone-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.milestone-sub {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Card */
+.timeline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-card:hover {
+  border-color: var(--border-default);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+}
+
+.card-period {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0.5rem 0 0.25rem;
+}
+
+.card-company {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 1rem 0;
+}
+
+.card-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ===== JOURNEY CONTINUES ===== */
+.journey-section {
+  padding: 6rem 3rem 8rem;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.journey-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.journey-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+}
+
+.journey-ctas {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .timeline-hero {
+    padding: 7rem 1.5rem 3rem;
+  }
+
+  .timeline-hero-inner {
+    flex-direction: column;
+  }
+
+  .timeline-clock {
+    align-items: flex-start;
+  }
+
+  .timeline-section {
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* Stack timeline vertically on mobile */
+  .timeline-line {
+    left: 1.5rem;
+  }
+
+  .timeline-entry {
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+
+  .entry-left .timeline-card,
+  .entry-right .timeline-card {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  .entry-left .timeline-node,
+  .entry-right .timeline-node {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .entry-left .timeline-milestone,
+  .entry-right .timeline-milestone,
+  .entry-left .timeline-milestone-empty,
+  .entry-right .timeline-milestone-empty {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .timeline-bg-text {
+    font-size: 4rem;
+  }
+
+  .journey-section {
+    padding: 4rem 1.5rem 6rem;
+  }
+}

@@ -1,117 +1,128 @@
-<!-- Projects Hero -->
+<!-- ===== PROJECTS HERO ===== -->
 <section class="projects-hero">
-  <div class="projects-hero-bg"></div>
   <div class="projects-hero-inner">
-    <div class="projects-badge">
-      <span class="status-dot-yellow"></span>
-      <span class="badge-text">{{ i18n.t().projects.badge }}</span>
+    <div class="projects-hero-left reveal">
+      <span class="section-label">{{ i18n.t().projects.badge }}</span>
+      <h1 class="projects-heading">
+        {{ i18n.t().projects.heading1 }}<br/>
+        <span class="text-gold-italic">{{ i18n.t().projects.heading2 }}</span>
+      </h1>
+      <p class="projects-subtitle">{{ i18n.t().projects.subtitle }}</p>
     </div>
-    <h1 class="projects-heading">
-      {{ i18n.t().projects.heading1 }} <span class="gradient-text-mixed">{{ i18n.t().projects.heading2 }}</span>
-    </h1>
-    <p class="projects-subtitle">
-      {{ i18n.t().projects.subtitle }}
-    </p>
+    <div class="projects-hero-right reveal">
+      <div class="status-text">
+        <span>STATUS: OPTIMIZED</span><br/>
+        <span>MEM_SYNC: <span class="text-gold">99.4%</span></span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Projects Grid -->
+<!-- ===== FEATURED PROJECTS ===== -->
+<section class="projects-featured">
+  <div class="projects-featured-inner">
+    <div class="featured-project-card reveal"
+         *ngFor="let project of featuredProjects(); let i = index"
+         (mousemove)="onCardTilt($event, $event.currentTarget)"
+         (mouseleave)="onCardTiltLeave($event.currentTarget)">
+      <div class="card-spotlight"></div>
+      <div class="featured-project-content">
+        <div class="featured-project-header">
+          <span class="project-period">{{ project.period }}</span>
+          <a *ngIf="project.github" [href]="project.github" target="_blank" class="project-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </a>
+        </div>
+        <h3 class="featured-project-title">{{ project.title }}</h3>
+        <p class="featured-project-desc">{{ project.summary }}</p>
+        <div class="featured-project-chips">
+          <span class="tech-chip" *ngFor="let skill of project.skills.slice(0, 3)">{{ skill }}</span>
+        </div>
+      </div>
+      <div class="featured-project-image" *ngIf="project.image">
+        <img [src]="project.image" [alt]="project.title" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ALL PROJECTS GRID ===== -->
 <section class="projects-grid-section">
   <div class="projects-grid-inner">
-
-    <!-- Featured Row: first 2 projects large -->
-    <div class="projects-featured-row">
-      <div class="proj-card proj-featured revealed" *ngFor="let p of featuredProjects()" (click)="openProject(p)"
-           (mousemove)="onCardTilt($event, $event.currentTarget)"
-           (mouseleave)="onCardTiltLeave($event.currentTarget)">
-        <div class="card-spotlight"></div>
-        <div class="proj-card-img">
-          <img [src]="p.image" [alt]="p.title" />
-          <div class="proj-card-img-overlay"></div>
-        </div>
-        <div class="proj-card-body">
-          <div class="proj-tags">
-            <span class="tech-chip" *ngFor="let skill of p.skills.slice(0, 3)">{{ skill }}</span>
-          </div>
-          <h3 class="proj-title">{{ p.title }}</h3>
-          <p class="proj-desc">{{ p.summary }}</p>
-          <div class="proj-meta">
-            <span class="proj-period">{{ p.period }}</span>
-            <div class="proj-actions">
-              <a *ngIf="p.github" [href]="p.github" target="_blank" class="btn-tertiary" (click)="$event.stopPropagation()">
-                {{ i18n.t().projects.sourceCode }}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="projects-grid-header reveal">
+      <h2 class="projects-grid-heading">{{ i18n.t().projects.allProjectsHeading }}</h2>
     </div>
 
-    <!-- Main Grid: all remaining projects -->
     <div class="projects-grid">
-      <div class="proj-card proj-regular revealed" *ngFor="let p of visibleProjects()" (click)="openProject(p)"
+      <div class="project-card reveal"
+           *ngFor="let project of visibleProjects(); let i = index"
            (mousemove)="onCardTilt($event, $event.currentTarget)"
-           (mouseleave)="onCardTiltLeave($event.currentTarget)">
+           (mouseleave)="onCardTiltLeave($event.currentTarget)"
+           (click)="openProject(project)">
         <div class="card-spotlight"></div>
-        <div class="proj-card-img proj-regular-img">
-          <img [src]="p.image" [alt]="p.title" />
-          <div class="proj-card-img-overlay"></div>
+        <div class="project-card-image" *ngIf="project.image">
+          <img [src]="project.image" [alt]="project.title" />
         </div>
-        <div class="proj-card-body">
-          <div class="proj-tags">
-            <span class="tech-chip" *ngFor="let skill of p.skills.slice(0, 2)">{{ skill }}</span>
+        <div class="project-card-content">
+          <span class="project-period-small">{{ project.period }}</span>
+          <h3 class="project-card-title">{{ project.title }}</h3>
+          <p class="project-card-desc">{{ project.summary }}</p>
+          <div class="project-card-chips">
+            <span class="tech-chip" *ngFor="let skill of project.skills.slice(0, 3)">{{ skill }}</span>
           </div>
-          <h3 class="proj-title-sm">{{ p.title }}</h3>
-          <p class="proj-desc-sm">{{ p.summary }}</p>
-          <span class="proj-period-sm">{{ p.period }}</span>
+          <div class="project-card-actions">
+            <a *ngIf="project.github" [href]="project.github" target="_blank" class="btn-tertiary"
+               (click)="$event.stopPropagation()">
+              {{ i18n.t().projects.sourceCode }}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- View More / Less Button -->
-    <div class="projects-more reveal" *ngIf="projects().length > 8">
-      <div class="more-divider"></div>
-      <button class="btn-glass" (click)="toggleShowAll()">
+    <div class="projects-toggle reveal">
+      <button class="btn-outline" (click)="toggleShowAll()">
         {{ showAll() ? i18n.t().projects.showLess : i18n.t().projects.viewMore }}
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             [style.transform]="showAll() ? 'rotate(180deg)' : 'none'" style="transition: transform 300ms ease">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
       </button>
     </div>
   </div>
 </section>
 
-<!-- Modal -->
-<div class="proj-modal" *ngIf="selectedProject" (click)="closeProject()">
-  <div class="proj-modal-content" (click)="$event.stopPropagation()">
+<!-- ===== PROJECT DETAIL MODAL ===== -->
+<div class="project-modal-overlay" *ngIf="selectedProject" (click)="closeProject()">
+  <div class="project-modal" (click)="$event.stopPropagation()">
     <button class="modal-close" (click)="closeProject()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
       </svg>
     </button>
-
-    <div class="modal-img-wrapper" *ngIf="selectedProject.image">
-      <img [src]="selectedProject.image" [alt]="selectedProject.title" class="modal-img" />
+    <div class="modal-image" *ngIf="selectedProject.image">
+      <img [src]="selectedProject.image" [alt]="selectedProject.title" />
     </div>
-
-    <div class="modal-body">
-      <div class="modal-tags">
+    <div class="modal-content">
+      <span class="project-period-small">{{ selectedProject.period }}</span>
+      <h2 class="modal-title">{{ selectedProject.title }}</h2>
+      <p class="modal-desc">{{ selectedProject.description }}</p>
+      <div class="modal-chips">
         <span class="tech-chip" *ngFor="let skill of selectedProject.skills">{{ skill }}</span>
       </div>
-      <h2 class="modal-title">{{ selectedProject.title }}</h2>
-      <p class="modal-period" *ngIf="selectedProject.period">{{ selectedProject.period }}</p>
-      <p class="modal-desc">{{ selectedProject.description }}</p>
-      <a *ngIf="selectedProject.github" [href]="selectedProject.github" target="_blank" class="btn-primary" style="margin-top: 1.5rem; display: inline-flex;">
-        {{ i18n.t().projects.viewGithub }}
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-      </a>
+      <div class="modal-actions">
+        <a *ngIf="selectedProject.github" [href]="selectedProject.github" target="_blank" class="btn-gold">
+          {{ i18n.t().projects.viewGithub }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"/>
+            <polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </div>

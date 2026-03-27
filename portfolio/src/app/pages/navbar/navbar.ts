@@ -8,7 +8,7 @@ import { TranslationService } from '../../services/translation.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  styleUrls: ['./navbar.css'],
 })
 export class NavbarComponent {
   i18n = inject(TranslationService);
@@ -21,7 +21,7 @@ export class NavbarComponent {
   }
 
   toggleMenu() {
-    this.isMenuOpen.update(val => !val);
+    this.isMenuOpen.update((val) => !val);
   }
 
   closeMenu() {
