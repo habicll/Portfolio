@@ -1,22 +1,24 @@
-# Theme Migration TODO
+# TODO — Warm Brown/Cream Theme Migration
 
-- [x] Gather info (read all relevant files)
-- [x] Confirm plan with user
-- [x] Update `portfolio/src/styles.css` with new theme tokens + legacy aliases + `.dark` variant
-- [x] Add `class="dark"` to `<html>` in `portfolio/src/index.html`
-- [x] Update `portfolio/src/app/app.css` raw rgbas
-- [x] Update `portfolio/src/app/pages/navbar/navbar.css` raw rgbas
-- [x] Update `portfolio/src/app/pages/home/home.css` raw rgbas
-- [x] Update `portfolio/src/app/pages/timeline/timeline.css` raw rgbas
-- [x] Update `portfolio/src/app/pages/projects/projects.css` raw rgbas
-- [x] Update `portfolio/src/app/pages/contact/contact.css` raw rgbas
-- [x] Update `portfolio/src/app/pages/home/home.ts` canvas / spotlight colors
-- [x] Update `portfolio/src/app/pages/projects/projects.ts` spotlight color
-- [x] Verify build / run
+## Phase 1 — Token system
+- [ ] Replace `:root` block in `src/styles.css` with user-provided light semantic tokens.
+- [ ] Add `.dark` block with user-provided dark semantic tokens.
+- [ ] Add legacy compatibility layer (map `--gold`, `--bg-primary`, `--text-*`, `--border-*`, `--bg-card`, etc. to the new semantic tokens) in both `:root` and `.dark`.
+- [ ] Update `::selection`, scrollbar, selection highlights to use `var(--primary)`.
+- [ ] Add `class="dark"` to `<html>` in `src/index.html`.
 
-## Result
-- `ng build` succeeded (494.74 kB bundle)
-- Preview server verified at http://localhost:4300
-- New warm brown/cream tokens (`--primary: #ffe0c2`, `--background: #111111`) applied throughout
-- Legacy `--gold`, `--bg-*`, `--text-*` aliases preserved → no component CSS needed rewriting logic
-- Dynamic canvas / spotlight colors read `--primary-rgb` CSS variable at runtime
+## Phase 2 — Purge hardcoded gold/bg rgba from component CSS
+- [ ] `src/app/pages/navbar/navbar.css` — replace `rgba(201,168,76,…)` and `rgba(5,5,5,…)`.
+- [ ] `src/app/pages/timeline/timeline.css` — replace `rgba(201,168,76,…)`.
+- [ ] `src/app/pages/projects/projects.css` — replace `rgba(5,5,5,…)`.
+- [ ] `src/app/pages/contact/contact.css` — replace `rgba(201,168,76,0.03)` watermark.
+- [ ] `src/app/pages/home/home.css` — change all hero backgrounds to `transparent`, remove `var(--bg-primary)` where it would cover the dot-matrix bg.
+
+## Phase 3 — CPU / background visual bridge
+- [ ] Reduce CPU size (cap via max-width on `.hero-cpu-wrapper` SVG).
+- [ ] Shrink line-start circle markers to match the 6px background dots.
+- [ ] Make CPU marker fill use the same white-ish color as the bg dots so they visually connect.
+
+## Phase 4 — Verify
+- [ ] `ng build` with no errors.
+- [ ] Visual test `/`, `/projects`, `/timeline`, `/contact` in browser.

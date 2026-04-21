@@ -74,6 +74,33 @@
   text-shadow: 0 0 60px var(--primary-alpha-15);
 }
 
+/* Hero content wrapper — centered stage for the gooey morphing text */
+.hero-center {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-gooey-wrapper {
+  /* Bounded so long words ("fullstack developer") don't run to the edges
+     of the dot-matrix bg, but still dominates the hero visually. */
+  width: min(92vw, 1100px);
+  height: clamp(180px, 28vh, 320px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-gooey-wrapper app-gooey-text,
+.hero-gooey-wrapper .gooey-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;
@@ -127,9 +154,11 @@
 /* ===== 01 // IDENTITY ===== */
 .identity-section {
   padding: 8rem 3rem;
-  background: var(--bg-primary);
+  /* Keep transparent so the global dot-matrix bg shows around the card. */
 }
 
+/* Frosted-glass panel — css.glass recipe
+   (soft white tint, light blur, generous radius, gentle drop-shadow) */
 .identity-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -137,6 +166,13 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+  padding: 3.5rem 3rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .identity-heading {
@@ -363,14 +399,22 @@
 /* ===== 03 // CONTACT PREVIEW ===== */
 .contact-preview-section {
   padding: 6rem 3rem 8rem;
-  background: var(--bg-primary);
+  /* Transparent — glass is applied to .contact-preview-inner */
   border-top: 1px solid var(--border-subtle);
 }
 
+/* Frosted-glass panel for the mini-contact form (css.glass recipe) */
 .contact-preview-inner {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
+  padding: 3.5rem 3rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-preview-header {
@@ -475,12 +519,14 @@
   }
 
   .identity-section {
-    padding: 5rem 1.5rem;
+    padding: 5rem 1rem;
   }
 
   .identity-inner {
     grid-template-columns: 1fr;
     gap: 3rem;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
   }
 
   .works-section {
@@ -496,7 +542,12 @@
   }
 
   .contact-preview-section {
-    padding: 4rem 1.5rem 6rem;
+    padding: 4rem 1rem 6rem;
+  }
+
+  .contact-preview-inner {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
   }
 
   .contact-mini-form {

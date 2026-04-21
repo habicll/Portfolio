@@ -1,0 +1,22 @@
+<div class="gooey-text" [class]="className">
+  <!-- Hidden SVG: defines the "gooey" threshold filter applied to the text stage. -->
+  <svg class="gooey-text-svg" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="gooey-threshold">
+        <feColorMatrix
+          in="SourceGraphic"
+          type="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 255 -140" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Stage: applies the filter so blurred letters merge together. -->
+  <div class="gooey-text-stage">
+    <span #text1 class="gooey-text-layer" [class]="textClassName"></span>
+    <span #text2 class="gooey-text-layer" [class]="textClassName"></span>
+  </div>
+</div>

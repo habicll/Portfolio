@@ -12,12 +12,13 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslationService } from '../../services/translation.service';
+import { GooeyText } from '../../components/gooey-text/gooey-text';
 import emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, GooeyText],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

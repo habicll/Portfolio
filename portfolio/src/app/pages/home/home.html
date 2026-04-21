@@ -10,16 +10,12 @@
   </div>
 
   <div class="hero-center" [class.revealed]="animState.heading">
-    <h1 class="hero-title">
-      <span class="hero-title-gold">FULLSTACK DEVELOPER</span>
-    </h1>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator" [class.revealed]="animState.scroll">
-    <span class="scroll-text">SCROLL</span>
-    <div class="scroll-line">
-      <div class="scroll-line-inner"></div>
+    <div class="hero-gooey-wrapper">
+      <app-gooey-text
+        [texts]="i18n.t().home.heroTexts"
+        [morphTime]="1"
+        [cooldownTime]="0.8">
+      </app-gooey-text>
     </div>
   </div>
 </section>

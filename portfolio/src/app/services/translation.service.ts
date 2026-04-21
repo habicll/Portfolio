@@ -34,6 +34,9 @@ const EN = {
 
   // --- Home Page ---
   home: {
+    // Hero: morphing phrase in the gooey text component
+    heroTexts: ['I am', 'a', 'fullstack developer'],
+
     identityLabel: 'IDENTITY',
     identityHeading1: 'Architecting digital ecosystems where precision meets ',
     identityHeading2: 'fluidity.',
@@ -200,6 +203,9 @@ const FR = {
 
   // --- Home Page ---
   home: {
+    // Hero: morphing phrase in the gooey text component
+    heroTexts: ['Je suis','développeur fullstack'],
+
     identityLabel: 'IDENTITÉ',
     identityHeading1: "Architecturer des écosystèmes numériques où la précision rencontre la ",
     identityHeading2: 'fluidité.',

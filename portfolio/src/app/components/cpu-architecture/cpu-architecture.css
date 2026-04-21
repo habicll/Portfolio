@@ -1,0 +1,7 @@
+/* CPU Architecture component — animations are defined globally in styles.css
+   so they apply through ViewEncapsulation.None. */
+
+.cpu-architecture-svg {
+  display: block;
+  color: var(--muted-foreground, #b4b4b4);
+}

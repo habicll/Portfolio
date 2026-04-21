@@ -1,3 +1,15 @@
+<!-- Global animated dot-matrix background (rendered behind everything) -->
+<div class="bg-canvas-reveal" aria-hidden="true">
+  <app-canvas-reveal-effect
+    [animationSpeed]="3"
+    [dotSize]="6"
+    [colors]="bgColors"
+    [reverse]="false"
+    [showGradient]="false"
+    [skipIntroAnimation]="skipBgIntro"
+  ></app-canvas-reveal-effect>
+</div>
+
 <app-navbar></app-navbar>
 
 <!-- Left Sidebar Navigation -->

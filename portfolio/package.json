@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-  "predeploy": "ng build --configuration production --base-href \"/Portfolio/\"",
-  "deploy": "gh-pages -d dist/portfolio/browser -b gh-pages"
+    "predeploy": "ng build --configuration production --base-href \"/Portfolio/\"",
+    "deploy": "gh-pages -d dist/portfolio/browser -b gh-pages"
   },
   "homepage": "https://habicll.github.io/Portfolio",
   "prettier": {
@@ -33,11 +33,13 @@
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
     "@ngneat/tailwind": "^7.0.3",
+    "@types/three": "^0.184.0",
     "emailjs-com": "^3.2.0",
     "gsap": "^3.13.0",
     "primeicons": "^7.0.0",
     "primeng": "^20.2.0",
     "rxjs": "~7.8.0",
+    "three": "^0.184.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
