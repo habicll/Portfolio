@@ -59,15 +59,6 @@ export class TimelineComponent implements AfterViewInit, OnDestroy {
         milestoneSub: t.exp3MilestoneSub,
       },
       {
-        period: t.exp4Period,
-        title: t.exp4Title,
-        company: t.exp4Company,
-        description: t.exp4Desc,
-        chips: ['C++', 'JAVA', 'VERILOG', 'FLUTTER'],
-        milestone: t.exp4Milestone,
-        milestoneSub: t.exp4MilestoneSub,
-      },
-      {
         period: t.exp5Period,
         title: t.exp5Title,
         company: t.exp5Company,
@@ -75,6 +66,15 @@ export class TimelineComponent implements AfterViewInit, OnDestroy {
         chips: ['BLOCKCHAIN', 'AI', 'PYTHON'],
         milestone: t.exp5Milestone,
         milestoneSub: t.exp5MilestoneSub,
+      },
+      {
+        period: t.exp4Period,
+        title: t.exp4Title,
+        company: t.exp4Company,
+        description: t.exp4Desc,
+        chips: ['C++', 'JAVA', 'VERILOG', 'FLUTTER'],
+        milestone: t.exp4Milestone,
+        milestoneSub: t.exp4MilestoneSub,
       },
       {
         period: t.exp6Period,

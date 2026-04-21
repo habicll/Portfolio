@@ -2,10 +2,6 @@ import {
   Component,
   AfterViewInit,
   OnDestroy,
-  ElementRef,
-  ViewChild,
-  HostListener,
-  NgZone,
   inject,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -24,8 +20,6 @@ import emailjs from 'emailjs-com';
 })
 export class Home implements AfterViewInit, OnDestroy {
   i18n = inject(TranslationService);
-
-  @ViewChild('particleCanvas', { static: false }) particleCanvasRef!: ElementRef<HTMLCanvasElement>;
 
   animState = {
     status: false,
@@ -84,16 +78,10 @@ export class Home implements AfterViewInit, OnDestroy {
   private templateId = 'template_vukyz0y';
   private publicKey = '41QsRMlD8iYCXoH3J';
 
-  // Particles
-  private particles: { x: number; y: number; vx: number; vy: number; size: number; alpha: number }[] = [];
-  private particleAnim: number = 0;
-  private mouseX = 0;
-  private mouseY = 0;
   private destroyed = false;
   private observer: IntersectionObserver | null = null;
-  private particleColor = '255, 224, 194';
 
-  constructor(private ngZone: NgZone) {}
+  constructor() {}
 
   ngAfterViewInit() {
     // Staggered hero entrance
@@ -116,25 +104,12 @@ export class Home implements AfterViewInit, OnDestroy {
     } catch (err) {
       console.warn('EmailJS init failed:', err);
     }
-
-    // Canvas animations outside Angular zone
-    this.ngZone.runOutsideAngular(() => {
-      this.initParticles();
-      this.animateParticles();
-    });
   }
 
   ngOnDestroy() {
     this.destroyed = true;
     if (this.observer) this.observer.disconnect();
     if (this.clockInterval) clearInterval(this.clockInterval);
-    cancelAnimationFrame(this.particleAnim);
-  }
-
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(e: MouseEvent) {
-    this.mouseX = e.clientX;
-    this.mouseY = e.clientY;
   }
 
   // ===== UTC CLOCK =====
@@ -227,94 +202,5 @@ export class Home implements AfterViewInit, OnDestroy {
     );
 
     revealElements.forEach((el) => this.observer?.observe(el));
-  }
-
-  // ===== GOLD PARTICLE FIELD =====
-  private initParticles() {
-    const canvas = this.particleCanvasRef?.nativeElement;
-    if (!canvas) return;
-
-    // Read the current theme primary color (RGB triplet) from CSS custom property
-    const cssPrimaryRgb = getComputedStyle(document.documentElement)
-      .getPropertyValue('--primary-rgb')
-      .trim();
-    if (cssPrimaryRgb) this.particleColor = cssPrimaryRgb;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    this.particles = Array.from({ length: 50 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
-      size: Math.random() * 1.5 + 0.5,
-      alpha: Math.random() * 0.25 + 0.05,
-    }));
-  }
-
-  private animateParticles() {
-    if (this.destroyed) return;
-
-    const canvas = this.particleCanvasRef?.nativeElement;
-    if (!canvas) {
-      this.particleAnim = requestAnimationFrame(() => this.animateParticles());
-      return;
-    }
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    this.particles.forEach((p) => {
-      const dx = this.mouseX - p.x;
-      const dy = this.mouseY - p.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 180) {
-        p.vx += (dx / dist) * 0.015;
-        p.vy += (dy / dist) * 0.015;
-      }
-
-      p.vx *= 0.99;
-      p.vy *= 0.99;
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${this.particleColor}, ${p.alpha})`;
-      ctx.fill();
-    });
-
-    // Gold connections
-    for (let i = 0; i < this.particles.length; i++) {
-      for (let j = i + 1; j < this.particles.length; j++) {
-        const a = this.particles[i];
-        const b = this.particles[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(${this.particleColor}, ${0.04 * (1 - dist / 100)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    this.particleAnim = requestAnimationFrame(() => this.animateParticles());
   }
 }
