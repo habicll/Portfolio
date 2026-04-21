@@ -43,6 +43,11 @@
   white-space: nowrap;
   /* Large, responsive — matches the original `text-6xl md:text-[60pt]`. */
   font-size: clamp(3rem, 10vw, 80pt);
+  /* Promote each layer to its own compositor layer so opacity changes
+     don't trigger paint of surrounding content (incl. the WebGL bg). */
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Responsive: ensure long words ("fullstack developer") still fit
@@ -52,5 +57,18 @@
     font-size: clamp(2rem, 12vw, 3.5rem);
     white-space: normal;
     max-width: 90vw;
+  }
+}
+
+/* ===== Mobile / coarse-pointer performance fix =====
+   The SVG goo `feGaussianBlur` + `feColorMatrix` filter has to
+   re-rasterize the entire stage on every animation tick. Combined
+   with the WebGL dot-matrix background, mobile GPUs choke and the
+   whole hero "freezes" each time the word changes. Drop the filter
+   on small screens and on touch devices — the TS side also switches
+   to a pure opacity crossfade for those viewports. */
+@media (max-width: 768px), (pointer: coarse) {
+  .gooey-text-stage {
+    filter: none;
   }
 }

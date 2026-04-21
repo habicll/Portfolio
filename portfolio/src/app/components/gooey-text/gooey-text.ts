@@ -53,11 +53,26 @@ export class GooeyText implements AfterViewInit, OnChanges, OnDestroy {
 
   private rafId = 0;
   private running = false;
+  /**
+   * On mobile / coarse-pointer devices the SVG goo filter + per-frame
+   * CSS `filter: blur()` writes are too expensive and cause the whole
+   * compositor (including the Three.js dot-matrix background) to hitch
+   * on every word change. We fall back to a plain opacity crossfade.
+   */
+  private reducedFilter = false;
 
   constructor(private zone: NgZone) {}
 
   ngAfterViewInit(): void {
+    this.detectReducedFilter();
     this.startAnimation();
+  }
+
+  private detectReducedFilter(): void {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    this.reducedFilter =
+      window.matchMedia('(max-width: 768px)').matches ||
+      window.matchMedia('(pointer: coarse)').matches;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -104,22 +119,32 @@ export class GooeyText implements AfterViewInit, OnChanges, OnDestroy {
     t1.textContent = texts[textIndex % texts.length];
     t2.textContent = texts[(textIndex + 1) % texts.length];
 
-    const setMorph = (fraction: number) => {
-      // Second layer fades in.
-      t2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-      t2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    const reducedFilter = this.reducedFilter;
 
-      // First layer fades out (using 1 - fraction).
+    const setMorph = (fraction: number) => {
       const inv = 1 - fraction;
-      t1.style.filter = `blur(${Math.min(8 / inv - 8, 100)}px)`;
-      t1.style.opacity = `${Math.pow(inv, 0.4) * 100}%`;
+      if (reducedFilter) {
+        // Mobile / coarse pointer: cheap opacity crossfade only — no blur
+        // writes, no goo recomputation. Keeps the whole hero (incl. the
+        // WebGL background) at a smooth frame rate.
+        t2.style.opacity = `${fraction * 100}%`;
+        t1.style.opacity = `${inv * 100}%`;
+      } else {
+        // Desktop: full goo morph with blur + opacity.
+        t2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        t2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+        t1.style.filter = `blur(${Math.min(8 / inv - 8, 100)}px)`;
+        t1.style.opacity = `${Math.pow(inv, 0.4) * 100}%`;
+      }
     };
 
     const doCooldown = () => {
       morph = 0;
-      t2.style.filter = '';
+      if (!reducedFilter) {
+        t2.style.filter = '';
+        t1.style.filter = '';
+      }
       t2.style.opacity = '100%';
-      t1.style.filter = '';
       t1.style.opacity = '0%';
     };
 
