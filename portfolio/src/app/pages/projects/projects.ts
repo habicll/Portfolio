@@ -16,6 +16,7 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
 
   private projectsBase = [
+    { title: 'ETH Global - Cannes', period: 'Apr 2026', skills: ['BLOACKCHAIN', 'UNISWAP', 'HEDERA', 'ARC CIRCLE', 'ENGLISH'], github: 'https://github.com/gderamchi/nova', image: 'eth.jpg', tKey: 0 },
     { title: 'VR & AI Interview Simulator', period: 'Feb 2026', skills: ['VISIONOS', 'SWIFT', 'AI', 'SPEECH RECOGNITION'], github: 'https://github.com/augustinrouillard/Virtual-interview', image: 'vision.png', tKey: 1 },
     { title: 'POLL-DOCKER Microservices', period: 'Dec 2025', skills: ['DOCKER', 'DEVOPS', 'POSTGRESQL', 'MICROSERVICES'], github: 'https://github.com/habicll/POLL-DOCKER', image: 'docker.png', tKey: 2 },
     { title: 'Real-time Chat Application', period: 'Jan 2026', skills: ['RUST', 'NEXT.JS', 'WEBSOCKET'], github: '', image: 'discord.png', tKey: 3 },
@@ -27,11 +28,12 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
     { title: 'Intermarche Wine & Cheese Pairing', period: 'Apr — Jun 2025', skills: ['BUBBLE.IO', 'TECH LEAD', 'API'], github: 'https://github.com/algosup/2024-2025-project-5-bubble-intermarche-team-6', image: 'Inter.jpeg', tKey: 9 },
     { title: 'CrippleFN — Blockchain x AI', period: 'Oct 2024', skills: ['AI', 'PYTHON', 'BLOCKCHAIN'], github: 'https://github.com/Marwane666/CrippleFN/tree/blockchain', image: 'Cripple.jpeg', tKey: 10 },
     { title: 'FPGA Web Simulator — CNES', period: 'Jan — Mar 2025', skills: ['PYTHON', 'FPGA', 'RESPONSIVE'], github: 'https://github.com/algosup/2024-2025-project-4-web-fpga-team-4', image: 'Cnes.jpeg', tKey: 11 },
-    { title: 'Evolution — 2D Platformer', period: 'Nov 2024 — Jan 2025', skills: ['C', 'CSFML', 'GAME DEV'], github: 'https://github.com/algosup/2024-2025-project-2-serious-game-team-4', image: 'Evolution.jpeg', tKey: 12 },
     { title: 'QuickestPath — C++ API', period: 'Sep — Oct 2024', skills: ['C++', 'API', 'XML/JSON'], github: 'https://github.com/algosup/2024-2025-project-3-quickest-path-team-4', image: 'QuickestPath.jpeg', tKey: 13 },
     { title: 'Frogger — FPGA Verilog', period: 'Sep — Oct 2024', skills: ['VERILOG', 'FPGA', 'VGA'], github: 'https://github.com/algosup/2024-2025-project-1-fpga-team-4', image: 'frogger.jpeg', tKey: 14 },
-    { title: 'Mooguis — Recruitment App', period: 'Jun 2024', skills: ['UX DESIGN', 'FIGMA', 'PROGRAM MANAGEMENT'], github: '', image: 'Mooguis.jpeg', tKey: 15 },
-    { title: 'Fichotron — Sports Security', period: 'Mar 2024', skills: ['EMBEDDED', 'IOT', 'MOBILE'], github: '', image: 'Fichotron.jpeg', tKey: 16 },
+    { title: 'Mooguis — NFC × Avalanche Hackathon', period: 'Jun 2024', skills: ['NFC', 'BLOCKCHAIN', 'AVALANCHE', 'NFT'], github: '', image: 'Mooguis.jpeg', tKey: 15 },
+    { title: 'Fichotron — AI Client Synthesizer', period: 'Mar 2024', skills: ['AI', 'WEB', 'DATA INTEGRATION', 'NLP'], github: '', image: 'Fichotron.jpeg', tKey: 16 },
+    { title: 'SportShield — CORIS Innovation', period: 'Apr — Jun 2024', skills: ['EMBEDDED', 'IOT', 'MOBILE', 'QA'], github: '', image: 'coris.png', tKey: 17 },
+    { title: 'Adopte Un Candidat — We Are Evolution', period: 'Jan — Mar 2024', skills: ['UX DESIGN', 'FIGMA', 'PROGRAM MANAGEMENT', 'MOBILE'], github: '', image: 'Evolution.jpeg', tKey: 18 },
   ];
 
   projects = computed(() => {
