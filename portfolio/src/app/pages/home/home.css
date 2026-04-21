@@ -71,7 +71,7 @@
 
 .hero-title-gold {
   color: var(--gold);
-  text-shadow: 0 0 60px rgba(201, 168, 76, 0.15);
+  text-shadow: 0 0 60px var(--primary-alpha-15);
 }
 
 /* Scroll indicator */
@@ -104,7 +104,7 @@
 .scroll-line {
   width: 1px;
   height: 3rem;
-  background: rgba(201, 168, 76, 0.1);
+  background: var(--primary-alpha-10);
   position: relative;
   overflow: hidden;
 }
@@ -194,7 +194,7 @@
 .identity-photo-border {
   position: absolute;
   inset: -6px;
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  border: 1px solid var(--primary-alpha-15);
   border-radius: 0.625rem;
   pointer-events: none;
 }

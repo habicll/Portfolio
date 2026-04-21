@@ -90,6 +90,7 @@ export class Home implements AfterViewInit, OnDestroy {
   private mouseY = 0;
   private destroyed = false;
   private observer: IntersectionObserver | null = null;
+  private particleColor = '255, 224, 194';
 
   constructor(private ngZone: NgZone) {}
 
@@ -160,7 +161,10 @@ export class Home implements AfterViewInit, OnDestroy {
 
     const spotlight = target.querySelector('.work-card-spotlight') as HTMLElement;
     if (spotlight) {
-      spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(201,168,76,0.06) 0%, transparent 60%)`;
+      const primaryRgb = getComputedStyle(document.documentElement)
+        .getPropertyValue('--primary-rgb')
+        .trim() || '255, 224, 194';
+      spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(${primaryRgb}, 0.06) 0%, transparent 60%)`;
       spotlight.style.opacity = '1';
     }
   }
@@ -229,6 +233,12 @@ export class Home implements AfterViewInit, OnDestroy {
     const canvas = this.particleCanvasRef?.nativeElement;
     if (!canvas) return;
 
+    // Read the current theme primary color (RGB triplet) from CSS custom property
+    const cssPrimaryRgb = getComputedStyle(document.documentElement)
+      .getPropertyValue('--primary-rgb')
+      .trim();
+    if (cssPrimaryRgb) this.particleColor = cssPrimaryRgb;
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -281,7 +291,7 @@ export class Home implements AfterViewInit, OnDestroy {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201, 168, 76, ${p.alpha})`;
+      ctx.fillStyle = `rgba(${this.particleColor}, ${p.alpha})`;
       ctx.fill();
     });
 
@@ -297,7 +307,7 @@ export class Home implements AfterViewInit, OnDestroy {
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(201, 168, 76, ${0.04 * (1 - dist / 100)})`;
+          ctx.strokeStyle = `rgba(${this.particleColor}, ${0.04 * (1 - dist / 100)})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }

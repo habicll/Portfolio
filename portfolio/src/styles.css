@@ -2,35 +2,183 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== The Golden Chronos — Global Styles ===== */
+/* ===== Theme Tokens (Warm Brown / Cream) ===== */
 
 :root {
-  --gold: #C9A84C;
-  --gold-light: #E2C97E;
-  --gold-dark: #A68A3E;
-  --gold-dim: rgba(201, 168, 76, 0.15);
-  --gold-glow: rgba(201, 168, 76, 0.3);
+  /* --- New theme tokens (light mode) --- */
+  --card: #fcfcfc;
+  --ring: #644a40;
+  --input: #d8d8d8;
+  --muted: #efefef;
+  --accent: #e8e8e8;
+  --border: #d8d8d8;
+  --radius: 0.5rem;
+  --chart-1: #644a40;
+  --chart-2: #ffdfb5;
+  --chart-3: #e8e8e8;
+  --chart-4: #ffe6c4;
+  --chart-5: #66493e;
+  --popover: #fcfcfc;
+  --primary: #644a40;
+  --sidebar: #fbfbfb;
+  --secondary: #ffdfb5;
+  --background: #f9f9f9;
+  --foreground: #202020;
+  --destructive: #e54d2e;
+  --sidebar-ring: #b5b5b5;
+  --sidebar-accent: #f7f7f7;
+  --sidebar-border: #ebebeb;
+  --card-foreground: #202020;
+  --sidebar-primary: #343434;
+  --muted-foreground: #646464;
+  --accent-foreground: #202020;
+  --popover-foreground: #202020;
+  --primary-foreground: #ffffff;
+  --sidebar-foreground: #252525;
+  --secondary-foreground: #582d1d;
+  --destructive-foreground: #ffffff;
+  --sidebar-accent-foreground: #343434;
+  --sidebar-primary-foreground: #fbfbfb;
+
+  /* --- RGB triplets (for alpha helpers) --- */
+  --primary-rgb: 100, 74, 64;           /* #644a40 */
+  --secondary-rgb: 255, 223, 181;       /* #ffdfb5 */
+  --background-rgb: 249, 249, 249;      /* #f9f9f9 */
+  --foreground-rgb: 32, 32, 32;         /* #202020 */
+
+  /* --- Alpha helpers (used by components) --- */
+  --primary-alpha-03: rgba(var(--primary-rgb), 0.03);
+  --primary-alpha-06: rgba(var(--primary-rgb), 0.06);
+  --primary-alpha-08: rgba(var(--primary-rgb), 0.08);
+  --primary-alpha-10: rgba(var(--primary-rgb), 0.10);
+  --primary-alpha-15: rgba(var(--primary-rgb), 0.15);
+  --primary-alpha-20: rgba(var(--primary-rgb), 0.20);
+  --primary-alpha-25: rgba(var(--primary-rgb), 0.25);
+  --primary-alpha-30: rgba(var(--primary-rgb), 0.30);
+  --primary-alpha-40: rgba(var(--primary-rgb), 0.40);
+  --bg-overlay-strong: rgba(var(--background-rgb), 0.85);
+  --bg-overlay-soft: rgba(var(--background-rgb), 0.6);
+  --bg-overlay-mobile: rgba(var(--background-rgb), 0.95);
+
+  /* --- Legacy aliases (keep existing component CSS working) --- */
+  --gold: var(--primary);
+  --gold-light: #8a6b5c;                /* lighter brown for light-mode gradients */
+  --gold-dark: #4a362e;
+  --gold-dim: var(--primary-alpha-15);
+  --gold-glow: var(--primary-alpha-30);
   --blue: #3B82F6;
   --blue-dim: rgba(59, 130, 246, 0.15);
   --lavender: #9BA8EB;
-  --bg-primary: #050505;
-  --bg-surface: #0A0A0A;
-  --bg-card: #0F0F0F;
-  --bg-card-hover: #141414;
-  --bg-elevated: #1A1A1A;
-  --border-subtle: rgba(201, 168, 76, 0.08);
-  --border-default: rgba(201, 168, 76, 0.15);
-  --border-strong: rgba(201, 168, 76, 0.3);
-  --text-primary: #E8E4DD;
-  --text-secondary: #9A9590;
-  --text-muted: #5A5550;
-  --text-gold: #C9A84C;
+
+  --bg-primary: var(--background);
+  --bg-surface: var(--sidebar);
+  --bg-card: var(--card);
+  --bg-card-hover: var(--accent);
+  --bg-elevated: var(--muted);
+
+  --border-subtle: var(--primary-alpha-08);
+  --border-default: var(--primary-alpha-15);
+  --border-strong: var(--primary-alpha-30);
+
+  --text-primary: var(--foreground);
+  --text-secondary: var(--muted-foreground);
+  --text-muted: #8a8a8a;
+  --text-gold: var(--primary);
+
+  /* --- Typography (unchanged) --- */
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Space Grotesk', monospace;
   --font-label: 'Space Grotesk', 'Inter', sans-serif;
+
+  /* --- Easing --- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  /* --- New theme tokens (dark mode) --- */
+  --card: #191919;
+  --ring: #ffe0c2;
+  --input: #484848;
+  --muted: #222222;
+  --accent: #2a2a2a;
+  --border: #201e18;
+  --radius: 0.5rem;
+  --chart-1: #ffe0c2;
+  --chart-2: #393028;
+  --chart-3: #2a2a2a;
+  --chart-4: #42382e;
+  --chart-5: #ffe0c1;
+  --popover: #191919;
+  --primary: #ffe0c2;
+  --sidebar: #18181b;
+  --secondary: #393028;
+  --background: #111111;
+  --foreground: #eeeeee;
+  --destructive: #e54d2e;
+  --sidebar-ring: #d4d4d8;
+  --sidebar-accent: #27272a;
+  --sidebar-border: #27272a;
+  --card-foreground: #eeeeee;
+  --sidebar-primary: #1d4ed8;
+  --muted-foreground: #b4b4b4;
+  --accent-foreground: #eeeeee;
+  --popover-foreground: #eeeeee;
+  --primary-foreground: #081a1b;
+  --sidebar-foreground: #f4f4f5;
+  --secondary-foreground: #ffe0c2;
+  --destructive-foreground: #ffffff;
+  --sidebar-accent-foreground: #f4f4f5;
+  --sidebar-primary-foreground: #ffffff;
+
+  /* --- RGB triplets (dark) --- */
+  --primary-rgb: 255, 224, 194;         /* #ffe0c2 */
+  --secondary-rgb: 57, 48, 40;          /* #393028 */
+  --background-rgb: 17, 17, 17;         /* #111111 */
+  --foreground-rgb: 238, 238, 238;      /* #eeeeee */
+
+  /* Legacy aliases (auto-update via cascade) */
+  --gold: var(--primary);
+  --gold-light: #fff1de;
+  --gold-dark: #d9bb95;
+  --text-muted: #7a7a7a;
+}
+
+@theme inline {
+  --color-card: var(--card);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-radius: var(--radius);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-popover: var(--popover);
+  --color-primary: var(--primary);
+  --color-sidebar: var(--sidebar);
+  --color-secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-destructive: var(--destructive);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-card-foreground: var(--card-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
 }
 
 @layer base {
@@ -54,7 +202,7 @@
   }
 
   ::selection {
-    background: rgba(201, 168, 76, 0.25);
+    background: var(--primary-alpha-25);
     color: var(--gold-light);
   }
 
@@ -132,7 +280,7 @@
   }
 
   .gradient-text-mixed {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--blue) 50%, var(--lavender) 100%);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--secondary) 50%, var(--gold-light) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -153,7 +301,7 @@
 
   /* ===== TECH CHIP ===== */
   .tech-chip {
-    background: rgba(201, 168, 76, 0.08);
+    background: var(--primary-alpha-08);
     color: var(--gold);
     font-family: var(--font-mono);
     font-size: 0.65rem;
@@ -169,13 +317,13 @@
 
   .tech-chip:hover {
     border-color: var(--border-default);
-    background: rgba(201, 168, 76, 0.15);
+    background: var(--primary-alpha-15);
   }
 
   /* ===== BUTTONS ===== */
   .btn-gold {
     background: var(--gold);
-    color: var(--bg-primary);
+    color: var(--primary-foreground);
     font-family: var(--font-mono);
     font-weight: 600;
     font-size: 0.75rem;
@@ -192,7 +340,7 @@
   }
 
   .btn-gold:hover {
-    box-shadow: 0 0 30px var(--gold-glow), 0 4px 20px rgba(201, 168, 76, 0.2);
+    box-shadow: 0 0 30px var(--gold-glow), 0 4px 20px var(--primary-alpha-20);
     transform: translateY(-2px);
   }
 
@@ -319,7 +467,7 @@
   }
 
   .glow-gold-subtle {
-    box-shadow: 0 0 40px rgba(201, 168, 76, 0.08);
+    box-shadow: 0 0 40px var(--primary-alpha-08);
   }
 
   /* ===== DIVIDER ===== */
@@ -409,8 +557,8 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(5, 5, 5, 0.03) 2px,
-      rgba(5, 5, 5, 0.03) 4px
+      rgba(var(--background-rgb), 0.03) 2px,
+      rgba(var(--background-rgb), 0.03) 4px
     );
     pointer-events: none;
     z-index: 1;

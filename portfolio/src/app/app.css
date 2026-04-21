@@ -36,10 +36,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 0.6rem;
-  background: rgba(10, 10, 10, 0.8);
+  background: var(--bg-overlay-strong);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(201, 168, 76, 0.06);
+  border: 1px solid var(--primary-alpha-06);
   border-left: none;
   border-radius: 0 0.5rem 0.5rem 0;
 }
@@ -59,12 +59,12 @@
 
 .sidebar-icon:hover {
   color: var(--gold);
-  background: rgba(201, 168, 76, 0.06);
+  background: var(--primary-alpha-06);
 }
 
 .sidebar-icon.active {
   color: var(--gold);
-  background: rgba(201, 168, 76, 0.1);
+  background: var(--primary-alpha-10);
 }
 
 .sidebar-icon.active::before {

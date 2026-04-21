@@ -85,7 +85,10 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
 
     const spotlight = target.querySelector('.card-spotlight') as HTMLElement;
     if (spotlight) {
-      spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(201,168,76,0.06) 0%, transparent 60%)`;
+      const primaryRgb = getComputedStyle(document.documentElement)
+        .getPropertyValue('--primary-rgb')
+        .trim() || '255, 224, 194';
+      spotlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(${primaryRgb}, 0.06) 0%, transparent 60%)`;
       spotlight.style.opacity = '1';
     }
   }

@@ -154,7 +154,7 @@
   font-family: var(--font-serif);
   font-size: clamp(15rem, 25vw, 25rem);
   font-weight: 700;
-  color: rgba(201, 168, 76, 0.03);
+  color: var(--primary-alpha-03);
   line-height: 1;
   pointer-events: none;
   user-select: none;
